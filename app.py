@@ -62,7 +62,6 @@ SECURITY AND COMPLIANCE:
 - Custody: BitGo institutional-grade custody. Assets held offline in air-gapped vaults, insulated from remote attacks.
 - Insurance: $250M insurance policy backed by Lloyd's of London syndicate.
 - ANDX does NOT lend or rehypothecate customer assets. Customer assets are held in custody for the benefit of customers only.
-- MARV Capital (SEC/FINRA registered) facilitates securities services.
 - KYC/AML compliance with encrypted data handling per global standards.
 - Federal bank oversight via BitGo OCC Charter.
 
@@ -72,7 +71,6 @@ WHY CHOOSE ANDX OVER COMPETITORS:
 - BitGo custody with $250M insurance (most use less secure solutions)
 - 1:1 reserves (no fractional reserve risk)
 - Free ACH/wire (many charge $5-25 per transfer)
-- SEC/FINRA alignment through MARV Capital
 - No rehypothecation of customer assets (unlike some major exchanges)
 
 TOKENIZATION (andxus.io/tokenization tab):
