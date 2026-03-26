@@ -93,8 +93,8 @@
 .andx-welcome{text-align:center;padding:36px 20px 20px}
 .andx-welcome h3{font-size:22px;font-weight:800;margin:0 0 10px;background:linear-gradient(135deg,#b8a0ff,#1de4d3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .andx-welcome p{color:rgba(255,255,255,.5);font-size:13px;margin:0 0 24px;line-height:1.5}
-.andx-chips{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 4px}
-.andx-chip{background:rgba(114,77,251,.08);border:1px solid rgba(114,77,251,.25);color:rgba(200,180,255,.9);font-size:12px;padding:10px 8px;border-radius:12px;cursor:pointer;transition:all .2s;font-family:inherit;text-align:center}
+.andx-chips{display:flex;flex-direction:column;gap:8px;padding:0 12px}
+.andx-chip{background:rgba(114,77,251,.08);border:1px solid rgba(114,77,251,.25);color:rgba(200,180,255,.9);font-size:13px;padding:12px 16px;border-radius:12px;cursor:pointer;transition:all .2s;font-family:inherit;text-align:left;display:block;width:100%}
 .andx-chip:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(114,77,251,.25);background:rgba(114,77,251,.2);border-color:rgba(114,77,251,.5)}
 
 /* Message rows */
