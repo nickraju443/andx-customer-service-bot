@@ -89,11 +89,11 @@
 #andx-thread::-webkit-scrollbar-thumb{background:rgba(114,77,251,.3);border-radius:4px}
 
 /* Welcome */
-.andx-welcome{text-align:center;padding:20px 10px 10px}
-.andx-welcome h3{color:#fff;font-size:16px;font-weight:700;margin:0 0 6px}
-.andx-welcome p{color:rgba(255,255,255,.5);font-size:12px;margin:0 0 18px}
-.andx-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-.andx-chip{background:rgba(114,77,251,.12);border:1px solid rgba(114,77,251,.3);color:rgba(200,180,255,.9);font-size:12px;padding:7px 14px;border-radius:20px;cursor:pointer;transition:all .2s;font-family:inherit}
+.andx-welcome{text-align:center;padding:28px 16px 16px}
+.andx-welcome h3{color:#fff;font-size:17px;font-weight:700;margin:0 0 8px}
+.andx-welcome p{color:rgba(255,255,255,.5);font-size:12px;margin:0 0 20px;line-height:1.5}
+.andx-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:0 8px}
+.andx-chip{background:rgba(114,77,251,.12);border:1px solid rgba(114,77,251,.3);color:rgba(200,180,255,.9);font-size:11px;padding:6px 12px;border-radius:20px;cursor:pointer;transition:all .2s;font-family:inherit;white-space:nowrap}
 .andx-chip:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(114,77,251,.25);background:rgba(114,77,251,.2);border-color:rgba(114,77,251,.5)}
 
 /* Message rows */
@@ -226,7 +226,7 @@
     '<div id="andx-thread"></div>',
 
     '<div id="andx-input-bar">',
-    '  <input id="andx-input" type="text" placeholder="Ask anything about ANDX..." autocomplete="off">',
+    '  <input id="andx-input" type="text" placeholder="Ask ANDX anything..." autocomplete="off">',
     '  <button id="andx-send">Ask</button>',
     '</div>',
 
@@ -405,7 +405,7 @@
   }
 
   function showWelcome() {
-    var html = '<div class="andx-welcome" id="andx-w-welcome"><h3>Welcome to ANDX Support</h3><p>Ask us anything about ANDX</p><div class="andx-w-chips"></div></div>';
+    var html = '<div class="andx-welcome" id="andx-w-welcome"><h3>Welcome to ANDX Support</h3><p>Ask us anything about our platform, features, security, or getting started</p><div class="andx-w-chips"></div></div>';
     thread.innerHTML = html;
     var chips = getStarterChips();
     var chipsEl = document.querySelector('.andx-w-chips');
