@@ -153,31 +153,100 @@ NEWS_API = "https://news.andx.ai"
 def fetch_market_context():
     """Fetch live market data from news.andx.ai APIs for market questions."""
     parts = []
+
+    # Prices
     try:
         r = requests.get(f"{NEWS_API}/api/data", timeout=5)
         if r.status_code == 200:
             data = r.json()
+            parts.append("LIVE PRICES:")
             for asset in ["BTC", "ETH", "IBIT", "Gold", "S&P 500"]:
                 d = data.get(asset, {})
                 if d.get("current"):
-                    parts.append(f"{asset}: ${d['current']:,.2f} (WoW: {d.get('wow_pct','?')}%, YTD: {d.get('ytd_pct','?')}%)")
+                    parts.append(f"  {asset}: ${d['current']:,.2f} (24h: {d.get('day_pct','?')}%, WoW: {d.get('wow_pct','?')}%, YTD: {d.get('ytd_pct','?')}%)")
     except Exception:
         pass
+
+    # Fear & Greed + Dominance
     try:
         r = requests.get(f"{NEWS_API}/api/context", timeout=5)
         if r.status_code == 200:
             ctx = r.json()
+            parts.append("\nMARKET CONTEXT:")
             if ctx.get("fear_greed_value"):
-                parts.append(f"Fear & Greed: {ctx['fear_greed_value']}/100 ({ctx.get('fear_greed_label', '')})")
+                parts.append(f"  Fear & Greed: {ctx['fear_greed_value']}/100 ({ctx.get('fear_greed_label', '')})")
             if ctx.get("btc_dominance"):
-                parts.append(f"BTC Dominance: {ctx['btc_dominance']}%")
+                parts.append(f"  BTC Dominance: {ctx['btc_dominance']}%")
+            if ctx.get("eth_dominance"):
+                parts.append(f"  ETH Dominance: {ctx['eth_dominance']}%")
     except Exception:
         pass
+
+    # Technical indicators
+    try:
+        r = requests.get(f"{NEWS_API}/api/technical", timeout=5)
+        if r.status_code == 200:
+            tech = r.json()
+            parts.append("\nTECHNICAL INDICATORS:")
+            for asset in ["BTC", "ETH"]:
+                t = tech.get(asset, {})
+                if t:
+                    line = f"  {asset}: RSI {t.get('rsi','?')}"
+                    if t.get('macd'): line += f", MACD {t['macd']:.2f}"
+                    if t.get('sma_50'): line += f", SMA50 ${t['sma_50']:,.0f}"
+                    if t.get('sma_200'): line += f", SMA200 ${t['sma_200']:,.0f}"
+                    if t.get('bb_pct_b') is not None: line += f", Bollinger %B {t['bb_pct_b']:.1f}"
+                    parts.append(line)
+    except Exception:
+        pass
+
+    # Signals
+    try:
+        r = requests.get(f"{NEWS_API}/api/signals", timeout=5)
+        if r.status_code == 200:
+            sig = r.json()
+            signals = sig.get("signals", [])
+            if signals:
+                parts.append("\nMARKET SIGNALS:")
+                for s in signals:
+                    parts.append(f"  {s['name']}: {s.get('value', '--')} ({s['status']}) — {s['description']}")
+    except Exception:
+        pass
+
+    # News headlines (top 5)
+    try:
+        r = requests.get(f"{NEWS_API}/api/news", timeout=5)
+        if r.status_code == 200:
+            news = r.json()
+            items = news.get("items", [])[:5]
+            if items:
+                parts.append("\nLATEST NEWS:")
+                for item in items:
+                    parts.append(f"  - {item.get('title', '')} ({item.get('source', '')})")
+    except Exception:
+        pass
+
+    # AI Insights
+    try:
+        r = requests.get(f"{NEWS_API}/api/insights", timeout=5)
+        if r.status_code == 200:
+            ins = r.json()
+            parts.append("\nAI INSIGHTS:")
+            if ins.get("risk_signal"):
+                parts.append(f"  Risk Signal: {ins['risk_signal']}")
+            if ins.get("institutional"):
+                parts.append(f"  Institutional: {ins['institutional']}")
+            if ins.get("key_levels"):
+                parts.append(f"  Key Levels: {ins['key_levels']}")
+    except Exception:
+        pass
+
     return "\n".join(parts)
 
 MARKET_KEYWORDS = ["btc", "bitcoin", "eth", "ethereum", "price", "market", "fear", "greed",
                    "bull", "bear", "trading", "crypto", "ibit", "gold", "s&p", "rally", "crash",
-                   "dominance", "rsi", "macd", "signal", "sentiment", "buy", "sell"]
+                   "dominance", "rsi", "macd", "signal", "sentiment", "buy", "sell", "news",
+                   "headline", "technical", "analysis", "outlook", "trend", "support", "resistance"]
 
 # ── Follow-up extraction ──
 def _extract_follow_ups(answer):
@@ -244,41 +313,47 @@ def api_ask():
 
     system_prompt = f"""You are ANDX Support — a friendly, knowledgeable AI assistant on the ANDX platform (andxus.io).
 
-MISSION: Help users with anything about ANDX. Answer clearly and concisely by default. If the user asks for more detail or a simpler explanation, adjust your response accordingly. You represent the ANDX brand — be warm, professional, and helpful.
+PRIMARY MISSION: Help users with ANDX platform questions — trading, fees, security, tokenization, team, sign up, app download, and anything about the company.
+SECONDARY MISSION: If someone asks about market data, crypto prices, news, technical analysis, or signals — you CAN answer using the live data provided. But NEVER bring up market data yourself unless the user specifically asks about it.
 
 KNOWLEDGE BASE:{ANDX_KNOWLEDGE}
 
+FORMATTING RULES (CRITICAL — follow these exactly):
+- Break your answer into short paragraphs of 2-3 sentences each
+- Put TWO line breaks between paragraphs for clear visual separation
+- For lists of features or items, put each on its own line
+- NEVER write one giant wall of text
+- Use <strong> tags to highlight key numbers, names, and important info
+- Keep each paragraph focused on ONE point
+- For market data responses, organize by category (Prices, Signals, News) with clear labels
+
 CRITICAL RULES:
-1. NEVER use # headings or * asterisks. Use <strong> tags for emphasis like <strong>$0 commissions</strong>.
-2. Answer concisely — under 200 words by default. Be thorough only when the question demands it.
+1. NEVER use # headings or * asterisks. Only use <strong> tags for emphasis.
+2. Answer concisely — under 200 words for support questions. For market data questions, you can be longer (up to 350 words) since there's more data to cover.
 3. If the user misspells words or asks vaguely, figure out what they mean and answer it. Never ask "what do you mean?"
 4. Never fabricate information. For details not in the knowledge base, direct to support@andxus.io.
 5. Always be positive about ANDX. You represent the brand.
 6. When someone asks for a shorter or simpler answer, give it. When they ask for more detail, expand.
-7. If the user says "take me to", "open", "go to", "navigate to", or "redirect to" a page — respond with ONLY the URL and nothing else. Example: if they say "take me to sign up" just respond "platform.andx.one". No explanation, no extra text. Just the URL.
-8. CRITICAL URL RULE: The news/market intelligence site is news.andx.ai — NEVER say news.andxus.io. The main ANDX website is andxus.io. These are DIFFERENT domains. Always use the exact URLs from the DIRECTING USERS section below.
+7. If the user says "take me to", "open", "go to", "navigate to", or "redirect to" a page — respond with ONLY the URL and nothing else. Just the URL.
+8. CRITICAL URL RULE: The news/market intelligence site is news.andx.ai — NEVER say news.andxus.io. The main ANDX website is andxus.io. These are DIFFERENT domains.
 
-DIRECTING USERS TO PAGES — ALWAYS include the full URL when directing users. The URLs will automatically become clickable links in the chat. If the user says "take me there" or "open it" or "go to", include the URL and they will be auto-redirected.
-- Sign up / create account: platform.andx.one
+DIRECTING USERS TO PAGES — include the full URL when relevant. Links become clickable automatically.
+- Sign up: platform.andx.one
 - Log in: platform.andx.one/login
-- Tokenization details: andxus.io/tokenization
-- Why ANDX / about: andxus.io/why-andx
-- Download the app: onelink.to/nfgq9a
-- Live market data, news, intelligence dashboard: news.andx.ai (NOT news.andxus.io — ALWAYS use news.andx.ai)
-- What-If Simulator: news.andx.ai/simulator
-- AI Trade Ideas: news.andx.ai/trade-ideas
+- Tokenization: andxus.io/tokenization
+- Why ANDX: andxus.io/why-andx
+- Download app: onelink.to/nfgq9a
+- Market dashboard: news.andx.ai (NEVER news.andxus.io)
+- Simulator: news.andx.ai/simulator
+- Trade Ideas: news.andx.ai/trade-ideas
 - Battle Mode: news.andx.ai/battle
-- Signal Dashboard: news.andx.ai/signals
-- Contact support: support@andxus.io
-- Meet the team: andxus.io/about-us
-
-Do NOT automatically talk about market data or prices unless the user specifically asks. Focus on being a helpful support assistant.
+- Signals: news.andx.ai/signals
+- Support: support@andxus.io
+- Team: andxus.io/about-us
 
 FOLLOW-UPS: After your answer, add exactly 3 follow-ups. Each on its own line, prefixed with "FOLLOWUP: ".
-STRICT FORMAT: Each MUST be a specific, direct question about a concrete ANDX topic — as if the user typed it themselves.
-GOOD: "What are the trading fees?" / "How does BitGo custody work?" / "Tell me about Manila One" / "Who is the CEO?" / "How do I download the app?"
-BAD: "What brings you to ANDX today?" / "Are you interested in trading?" / "Would you like to know more?" / "Need help with anything else?"
-NEVER write open-ended, conversational, or greeting-style follow-ups. Every single follow-up must ask about a SPECIFIC feature, product, person, or topic."""
+Each MUST be a specific direct question like "What are the trading fees?" or "How does BitGo custody work?"
+NEVER write open-ended questions like "Would you like to know more?" or "What brings you here?"."""
 
     # Fetch live market data if the question is market-related
     market_block = ""
