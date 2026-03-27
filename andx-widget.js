@@ -10,7 +10,7 @@
   window.__andxWidgetLoaded = true;
 
   /* ── Config ─────────────────────────────────────────── */
-  var API_BASE = window.ANDX_BOT_URL || 'http://34.48.27.215:8081';
+  var API_BASE = window.ANDX_BOT_URL || 'https://andx-bot-245374915379.us-central1.run.app';
   var isOpen = false;
   var isMinimized = false;
   var isStreaming = false;
