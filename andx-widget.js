@@ -10,7 +10,7 @@
   window.__andxWidgetLoaded = true;
 
   /* ── Config ─────────────────────────────────────────── */
-  var API_BASE = window.ANDX_BOT_URL || 'https://web-production-76044.up.railway.app';
+  var API_BASE = window.ANDX_BOT_URL || 'http://34.48.27.215:8081';
   var isOpen = false;
   var isMinimized = false;
   var isStreaming = false;
