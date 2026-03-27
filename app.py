@@ -13,11 +13,12 @@ CORS(app, resources={r"/api/*": {"origins": ["https://andxus.io", "https://www.a
 _rate_cache = {}
 def _rate_check(ip, limit=10, window=60):
     now = time.time()
-    key = f"{ip}:{int(now // window)}"
+    bucket = str(int(now // window))
+    key = ip + "|" + bucket
     _rate_cache[key] = _rate_cache.get(key, 0) + 1
     # Clean old entries
     for k in list(_rate_cache):
-        if k.split(":")[1] != str(int(now // window)):
+        if not k.endswith("|" + bucket):
             del _rate_cache[k]
     return _rate_cache[key] <= limit
 
