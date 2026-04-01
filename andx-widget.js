@@ -66,7 +66,7 @@
 #andx-panel::before{content:'';position:absolute;inset:-1px;border-radius:17px;padding:1px;background:linear-gradient(var(--andx-ba,0deg),#724dfb,#1de4d3,#724dfb);background-size:300% 300%;animation:andxGradBorder 4s ease infinite;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;z-index:0}
 
 /* Particle canvas */
-#andx-particles{position:absolute;inset:0;z-index:0;pointer-events:none;border-radius:16px}
+#andx-particles{display:none}
 
 /* Header */
 #andx-header{position:relative;z-index:1;display:flex;align-items:center;gap:12px;padding:16px 16px;background:linear-gradient(135deg,rgba(114,77,251,.18),rgba(29,228,211,.05));border-bottom:2px solid;border-image:linear-gradient(90deg,#724dfb,#1de4d3) 1;cursor:grab;user-select:none;flex-shrink:0;overflow:hidden}
@@ -90,11 +90,12 @@
 #andx-thread::-webkit-scrollbar-thumb{background:rgba(114,77,251,.3);border-radius:4px}
 
 /* Welcome */
-.andx-welcome{text-align:center;padding:36px 20px 20px}
-.andx-welcome h3{font-size:22px;font-weight:800;margin:0 0 10px;background:linear-gradient(135deg,#b8a0ff,#1de4d3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.andx-welcome p{color:rgba(255,255,255,.5);font-size:13px;margin:0 0 24px;line-height:1.5}
-.andx-chips{display:flex;flex-direction:column;gap:8px;padding:0 12px}
-.andx-chip{background:rgba(114,77,251,.08);border:1px solid rgba(114,77,251,.25);color:rgba(200,180,255,.9);font-size:13px;padding:12px 16px;border-radius:12px;cursor:pointer;transition:all .2s;font-family:inherit;text-align:left;display:block;width:100%}
+.andx-welcome{text-align:center;padding:20px;display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%}
+.andx-welcome-text{margin-top:auto;padding-top:40px}
+.andx-welcome h3{font-size:24px;font-weight:800;margin:0 0 10px;color:#724dfb}
+.andx-welcome p{color:rgba(255,255,255,.5);font-size:13px;margin:0;line-height:1.5}
+.andx-chips{display:flex;gap:8px;padding:0 12px;margin-top:auto;margin-bottom:8px;width:100%;flex-wrap:nowrap}
+.andx-chip{background:rgba(114,77,251,.1);border:1px solid rgba(114,77,251,.3);color:rgba(200,180,255,.9);font-size:11px;padding:10px 8px;border-radius:10px;cursor:pointer;transition:all .2s;font-family:inherit;text-align:center;display:flex;align-items:center;justify-content:center;line-height:1.3;flex:1;min-width:0}
 .andx-chip:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(114,77,251,.25);background:rgba(114,77,251,.2);border-color:rgba(114,77,251,.5)}
 
 /* Message rows */
@@ -137,7 +138,9 @@
 #andx-input-bar:focus-within{box-shadow:0 0 0 2px rgba(114,77,251,.2),0 0 20px rgba(114,77,251,.08)}
 #andx-input{flex:1;background:transparent;border:none;color:#fff;font-size:14px;padding:6px 4px;outline:none;font-family:inherit}
 #andx-input::placeholder{color:rgba(255,255,255,.3)}
-#andx-send{background:linear-gradient(135deg,#724dfb,#1de4d3);border:none;color:#fff;font-size:13px;font-weight:700;padding:10px 20px;border-radius:10px;cursor:pointer;transition:all .2s;font-family:inherit;min-height:42px}
+#andx-send{background:transparent;border:2px solid #724dfb;color:#724dfb;width:42px;height:42px;border-radius:50%;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:0}
+#andx-send:hover{background:rgba(114,77,251,.15)}
+#andx-send svg{stroke:#724dfb}
 #andx-send:hover{opacity:.88}
 #andx-send:disabled{opacity:.4;cursor:default}
 
@@ -160,9 +163,10 @@
 
 /* Mobile */
 @media(max-width:500px){
-  #andx-fab{width:50px;height:50px;bottom:16px;right:16px}
-  #andx-tooltip{bottom:74px;right:16px;font-size:12px}
-  #andx-panel{width:calc(100vw - 24px);right:12px;bottom:78px;max-height:70vh;resize:none}
+  #andx-fab{width:50px;height:50px;bottom:90px;right:16px}
+  #andx-tooltip{bottom:150px;right:16px;font-size:12px}
+  #andx-panel{width:calc(100vw - 24px);right:12px;bottom:152px;max-height:60vh;resize:none}
+  .andx-chip{font-size:11px;padding:10px 8px}
 }
 `;
   document.head.appendChild(css);
@@ -205,14 +209,12 @@
     '  <span class="andx-hdr-dots" style="top:8px;left:30%;--dx:12px;--dy:6px;animation:andxHeaderDot 6s ease infinite"></span>',
     '  <span class="andx-hdr-dots" style="top:28px;left:60%;--dx:-8px;--dy:10px;animation:andxHeaderDot 8s ease infinite 1s"></span>',
     '  <span class="andx-hdr-dots" style="top:14px;left:82%;--dx:6px;--dy:-8px;animation:andxHeaderDot 7s ease infinite 2s"></span>',
-    '  <div class="andx-avatar">AI</div>',
     '  <div class="andx-hdr-info">',
     '    <div class="andx-hdr-title">ANDX Intelligence</div>',
     '    <div class="andx-hdr-sub"><span class="andx-status"></span> <span class="andx-online">Online</span></div>',
     '  </div>',
     '  <div class="andx-hdr-btns">',
     '    <button class="andx-hdr-btn" data-action="clear">Clear</button>',
-    '    <button class="andx-hdr-btn" data-action="min">_</button>',
     '    <button class="andx-hdr-btn" data-action="close">\u2715</button>',
     '  </div>',
     '</div>',
@@ -221,7 +223,7 @@
 
     '<div id="andx-input-bar">',
     '  <input id="andx-input" type="text" placeholder="Ask ANDX anything..." autocomplete="off">',
-    '  <button id="andx-send">Ask</button>',
+    '  <button id="andx-send"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>',
     '</div>',
 
     ''
@@ -394,12 +396,12 @@
     } else if (path.includes('why-andx') || path.includes('about')) {
       return ['Who is the CEO?', 'What makes ANDX different?', 'How is ANDX regulated?', 'What is BitGo custody?', 'How many users does ANDX have?', 'Tell me about the team'];
     } else {
-      return ['What is ANDX?', 'How do I sign up?', 'What are the trading fees?', 'Is ANDX safe and regulated?', 'What makes ANDX different?', 'How do I contact support?'];
+      return ['How is ANDX different?', 'Is ANDX safe and regulated?', 'What are the trading fees?', 'How does tokenization work?'];
     }
   }
 
   function showWelcome() {
-    var html = '<div class="andx-welcome" id="andx-w-welcome"><h3>Welcome to ANDX Support</h3><p>Ask us anything about our platform, features, security, or getting started</p><div class="andx-w-chips"></div></div>';
+    var html = '<div class="andx-welcome" id="andx-w-welcome"><div class="andx-welcome-text"><h3>Welcome to ANDX Support</h3><p>Ask us anything about our platform, features, security, or getting started</p></div><div class="andx-w-chips andx-chips"></div></div>';
     thread.innerHTML = html;
     var chips = getStarterChips();
     var chipsEl = document.querySelector('.andx-w-chips');
@@ -572,7 +574,7 @@
       if (tokens[idx - 1] && tokens[idx - 1].charAt(0) === '<') {
         step();
       } else {
-        setTimeout(step, 50);
+        setTimeout(step, 80);
       }
     }
     step();
@@ -628,6 +630,7 @@
       var fabBadge = document.getElementById('andx-fab-badge');
       if (fabBadge) fabBadge.remove();
       var answer = data.answer || data.response || 'Sorry, something went wrong.';
+      answer = answer.replace(/\n\n+/g, '<br><br>').replace(/\n/g, '<br>');
       var linked = linkifyUrls(answer);
 
       var row = appendBubble('ai', linked);
@@ -645,7 +648,7 @@
         if (autoNav) {
           var urlMatch = answer.match(/https?:\/\/[^\s<)"]+/);
           if (!urlMatch) {
-            var domainMatch = answer.match(/(?:platform\.andx\.one|(?:news\.)?andxus\.io)(?:\/[^\s<)")]*)?/);
+            var domainMatch = answer.match(/(?:platform\.andx\.one|(?:news\.)?andx\.ai|(?:news\.)?andxus\.io|onelink\.to\/nfgq9a)(?:\/[^\s<)")]*)?/);
             if (domainMatch) urlMatch = ['https://' + domainMatch[0]];
           }
           if (urlMatch) {
