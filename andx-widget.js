@@ -165,7 +165,8 @@
 @media(max-width:500px){
   #andx-fab{width:50px;height:50px;bottom:90px;right:16px}
   #andx-tooltip{bottom:150px;right:16px;font-size:12px}
-  #andx-panel{width:calc(100vw - 24px);right:12px;bottom:152px;max-height:60vh;resize:none}
+  #andx-panel{width:100vw;height:100vh;right:0;bottom:0;top:0;left:0;max-height:100vh;border-radius:0;resize:none}
+  #andx-panel::before{border-radius:0}
   .andx-chip{font-size:11px;padding:10px 8px}
 }
 `;
