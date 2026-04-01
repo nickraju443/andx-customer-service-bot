@@ -165,7 +165,7 @@
 @media(max-width:500px){
   #andx-fab{width:50px;height:50px;bottom:90px;right:16px}
   #andx-tooltip{bottom:150px;right:16px;font-size:12px}
-  #andx-panel{width:100vw;height:100vh;right:0;bottom:0;top:0;left:0;max-height:100vh;border-radius:0;resize:none}
+  #andx-panel{width:100vw;height:100dvh;right:0;bottom:0;top:0;left:0;max-height:100dvh;border-radius:0;resize:none}
   #andx-panel::before{border-radius:0}
   .andx-chip{font-size:11px;padding:10px 8px}
 }
@@ -431,6 +431,9 @@
       panel.classList.remove('andx-minimized', 'andx-closing');
       panel.classList.add('andx-open');
 
+      // Lock background scroll on mobile
+      if (window.innerWidth <= 500) document.body.style.overflow = 'hidden';
+
       // Reset position to default
       panel.style.left = '';
       panel.style.top = '';
@@ -458,6 +461,7 @@
       panel.classList.remove('andx-open', 'andx-closing', 'andx-minimized');
       isOpen = false;
       isMinimized = false;
+      document.body.style.overflow = '';
       fab.innerHTML = CHAT_ICON;
       if (particleRAF) { cancelAnimationFrame(particleRAF); particleRAF = null; }
     }, 200);
