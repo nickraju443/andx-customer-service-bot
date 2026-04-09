@@ -33,21 +33,22 @@ except ImportError:
 # ── ANDX Knowledge Base ──
 ANDX_KNOWLEDGE = """
 ABOUT ANDX THE PLATFORM/COMPANY:
-- ANDX Global is a licensed, regulated crypto exchange and digital finance platform serving 1,000,000+ users globally with 79,900 daily active traders and 99% uptime during peak volatility.
+- ANDX Global is a licensed, regulated crypto exchange and digital finance platform serving 2,000,000+ users globally with 79,900 daily active traders and 99% uptime during peak volatility.
 - CEO and Founder: Viru Raparthi — built the team combining bankers, risk managers, and compliance experts.
 - COO and Co-Founder: Opender Singh, CFA — Wall Street veteran who left traditional finance to build AI-native Web3 markets.
 - Mission: Unify multi-asset trading, tokenization, secure cross-border payments, real-time financial intelligence, and a gamified participation layer into one next-generation digital finance ecosystem.
 - Tagline: "Crypto Markets. Real-World Assets. One Platform."
 - Website: andxus.io
 - AI Portal: andx.ai — adaptive intelligence systems powering smarter decisions in crypto and beyond. Features XORE AI assistant (launching soon).
-- Global presence: ANDX operates in the United States (all 50 states), Brazil, Philippines, and Turkey.
+- Global presence: ANDX operates in the United States (all 50 states), Brazil, Philippines, Turkey, and Dominican Republic with planned further expansion.
 - Contact / Support: support@andxus.io
-- App download: Google Play (search "ANDX Smart Crypto Trading") or onelink.to/nfgq9a
+- App download (Android): Google Play — search "AndX Global Trading App" or use onelink.to/nfgq9a
+- App download (iOS): Apple App Store — search "AndX Global Trading App"
 - Trading platform login: platform.andx.one
 
 TRADING FEATURES (andxus.io main page):
 - Zero commission trading — $0 execution fees with transparent pricing and AI-driven risk modeling. Market spreads, blockchain network fees, and intermediary bank fees may still apply separately.
-- Available in ALL 50 US states including New York (via BitGo New York Trust Company, NYDFS regulated).
+- Available in ALL 50 US states.
 - Deep institutional liquidity — pricing sourced from top-tier liquidity providers.
 - Instant execution — your capital, on demand.
 - Free ACH transfers with zero artificial delays. Same-day wire transfer options.
@@ -68,7 +69,7 @@ SECURITY AND COMPLIANCE:
 
 WHY CHOOSE ANDX OVER COMPETITORS:
 - $0 commissions (most exchanges charge 0.1-0.5% per trade)
-- All 50 states including NY (many exchanges block NY users)
+- All 50 states (many exchanges block certain states)
 - BitGo custody with $250M insurance (most use less secure solutions)
 - 1:1 reserves (no fractional reserve risk)
 - Free ACH/wire (many charge $5-25 per transfer)
@@ -90,13 +91,17 @@ TOKENIZATION (andxus.io/tokenization tab):
   - Liquidity Reserve (ALR): Helps keep the market stable — like a safety net.
   - Fan Tokens (FNT): Get exclusive access and rewards — like a VIP membership.
   - Private Company Tokens (PCT): Own a piece of a private company — like stock but tokenized.
+  - Novelty Tokens (NVT): Collectible and unique digital assets similar to RealAsset Tokens.
+- Tokenization is SEC/BSP-aligned with audited smart contracts and encrypted identity management.
+- Secondary liquidity available via ATS/exchanges or structured buybacks where permitted.
 
 MANILA ONE PROJECT (featured on tokenization page):
-- A tokenized real-world asset project on ANDX — a land development project in Manila.
-- Target returns: 24% Preferred Return with 100% Target Return.
-- This is an expected investor return profile, subject to change, and is not a guaranteed offer.
-- Accessible directly from the ANDX trading dashboard.
-- In simple terms: Manila One lets you invest in a real land project in the Philippines through a digital token. Instead of needing millions to buy property, you can participate with a smaller amount and potentially earn returns as the project develops.
+- Also known as "Rizal de Manila" — a $100M land development project in Manila, Philippines.
+- Token type: RealAsset Token (ART) — represents land, buildings, and infrastructure with capital appreciation + income potential.
+- Target returns: 24% Preferred Return with 100% Target Return. These are expected investor return profiles, subject to change, and not a guaranteed offer or solicitation.
+- Featured as ANDX's flagship real-world asset offering.
+- Users can view full asset details and invest through the ANDX trading dashboard at platform.andx.one.
+- In simple terms: Manila One lets you invest in a real $100M land development in the Philippines through a digital token. Instead of needing millions to buy property, you can participate with a smaller amount and potentially earn returns as the project develops. The token represents actual ownership in the underlying real estate asset.
 
 ANDX ROADMAP:
 1. Sovereign Exchange — live and operational now.
@@ -110,6 +115,53 @@ AI FEATURES (coming to beta — "AI Alpha" waitlist on andxus.io):
 - Contextual Alerts: Get plain-English market analysis delivered to your dashboard — no jargon, just clear insights.
 - XORE: AI assistant on andx.ai — ask anything about getting started with ANDX.
 
+ANDX AI PORTAL (andx.ai):
+- andx.ai is the AI intelligence hub — "adaptive intelligence for crypto and beyond."
+- XORE: AI assistant (coming soon) — conversational guidance to help users get started with ANDX.
+- Tokenization portal: tokenization.andx.ai — dedicated portal for real-world asset tokenization.
+
+ANDX ECOSYSTEM PRODUCTS:
+- Exchange and Trading (andxus.io) — spot crypto trading, tokenized securities, real-world assets.
+- Tokenization (tokenization.andx.ai) — converting real-world assets into blockchain tokens for fractional ownership and global liquidity.
+- Payments — cryptocurrency-based payment solutions, including EV charging station integration.
+- Cross-Border Transfers — frictionless on-chain remittances using the USDA1 stablecoin. Fast, low-cost international transfers.
+- Gamification — engagement tools including contests, leaderboards, badges, and referral rewards to keep users active and learning.
+
+DEPOSITS AND WITHDRAWALS:
+- ACH deposits: free, no fees, credited upon settlement.
+- Wire transfers: available same-day for rapid liquidity needs.
+- Direct bank redemption on demand — withdraw to your linked bank account anytime.
+- Self-custodial withdrawals supported — send crypto to your own wallet.
+- No artificial withdrawal delays or hidden holds.
+
+SUPPORTED ASSETS AND MARKETS:
+- Crypto spot trading — from blue-chip coins to challenger alts. "If it has liquidity, it's accessible."
+- Tokenized real-world assets (real estate, land, infrastructure).
+- Global alternatives and institutional-grade real estate opportunities.
+
+BETA FEATURES (AI Alpha — waitlist on andxus.io):
+- Portfolio stress-testing tools — test how your portfolio would handle past market crashes.
+- Real-time volatility-based alerts — get notified when market conditions change.
+- Automated stop-loss recommendations based on actual volatility.
+- Market analysis dashboards with plain-English insights.
+
+PLATFORM INFRASTRUCTURE:
+- Built on a globally-proven exchange engine — infrastructure is proven, not experimental.
+- Founded to replace "casino-style exchanges" with professional trading infrastructure from traditional finance.
+- Company tagline: "We Built the Infrastructure, You Fly the Plane."
+- Federal Bank Oversight via BitGo OCC Charter.
+
+GLOBAL PRESENCE:
+- Over 2 million users globally.
+- Available in all 50 US states.
+- Operating in the United States, Brazil, Philippines, Turkey, and Dominican Republic with planned expansion.
+
+RESOURCES AVAILABLE ON THE PLATFORM:
+- Help Center: accessible from andxus.io footer.
+- API Access: available for developers building on ANDX.
+- System Status: live monitoring page for platform uptime.
+- Contact support: support@andxus.io
+
 ANDX MARKET INTELLIGENCE (news.andx.ai — separate product):
 - A free market intelligence terminal with live crypto data, AI newsletters, trade ideas, asset battle arena, signal dashboard, and an AI chatbot.
 - Users can visit news.andx.ai for real-time market analysis.
@@ -118,7 +170,8 @@ ANDX MARKET INTELLIGENCE (news.andx.ai — separate product):
 HELPFUL LINKS TO DIRECT USERS:
 - Sign up / Create account: platform.andx.one
 - Login: platform.andx.one/login
-- Download app: onelink.to/nfgq9a
+- Download app (Android): onelink.to/nfgq9a
+- Download app (iOS): Search "AndX Global Trading App" on the Apple App Store
 - Tokenization info: andxus.io/tokenization
 - Why ANDX: andxus.io/why-andx
 - Market intelligence: news.andx.ai
@@ -273,6 +326,11 @@ def index():
     return send_from_directory(".", "preview.html")
 
 
+@app.route("/mobile")
+def mobile():
+    return send_from_directory(".", "mobile.html")
+
+
 @app.route("/andx-widget.js")
 def widget_js():
     return send_from_directory(".", "andx-widget.js", mimetype="application/javascript")
@@ -306,7 +364,7 @@ def api_ask():
     history_block = ""
     if history:
         history_lines = ["CONVERSATION HISTORY:"]
-        for i, ex in enumerate(history[-4:], 1):
+        for i, ex in enumerate(history[-8:], 1):
             history_lines.append(f"[User {i}]: {ex.get('q', '')}")
             history_lines.append(f"[ANDX {i}]: {ex.get('a', '')[:400]}")
         history_block = "\n".join(history_lines) + "\n\n"
@@ -318,32 +376,48 @@ SECONDARY MISSION: If someone asks about market data, crypto prices, news, techn
 
 KNOWLEDGE BASE:{ANDX_KNOWLEDGE}
 
-FORMATTING RULES (CRITICAL — follow these exactly):
+CONVERSATION AWARENESS (CRITICAL):
+- You have conversation history below. USE IT. If a user says "tell me more" or "what about that" or "how?" — look at what was just discussed and continue naturally.
+- Never ask the user to repeat themselves. If they reference something from earlier in the chat, you should know what they mean.
+- If a user sends a short follow-up like "and the fees?" after asking about trading, you should understand they mean trading fees.
+- Respond like a real person having a conversation, not a search engine giving isolated answers.
+
+OFF-TOPIC HANDLING:
+- You ONLY help with ANDX, crypto markets, and related financial topics.
+- If someone asks about something completely unrelated (cooking, sports, homework, coding, etc.), respond kindly: "I appreciate the question, but I'm specifically here to help with ANDX and the crypto markets. Is there anything about our platform I can help you with?"
+- NEVER answer off-topic questions. Always redirect back to ANDX politely.
+- If someone is rude or hostile, stay calm and professional. Do not engage with negativity.
+
+FORMATTING RULES:
 - Break your answer into short paragraphs of 2-3 sentences each
 - Put TWO line breaks between paragraphs for clear visual separation
-- For lists of features or items, put each on its own line
+- For lists, put each item on its own line
 - NEVER write one giant wall of text
 - Use <strong> tags to highlight key numbers, names, and important info
 - Keep each paragraph focused on ONE point
-- For market data responses, organize by category (Prices, Signals, News) with clear labels
 
 CRITICAL RULES:
 1. NEVER use # headings or * asterisks. Only use <strong> tags for emphasis.
-2. Answer concisely — under 200 words for support questions. For market data questions, you can be longer (up to 350 words) since there's more data to cover.
-3. If the user misspells words or asks vaguely, figure out what they mean and answer it. Never ask "what do you mean?"
-4. Never fabricate information. For details not in the knowledge base, direct to support@andxus.io.
+2. Answer concisely — under 200 words for support questions. For market data questions, up to 350 words.
+3. If the user misspells words or asks vaguely, figure out what they mean. Never ask "what do you mean?"
+4. STRICT RULE — NEVER FABRICATE OR GUESS: Before answering ANY question, check if the answer exists in your knowledge base or the live data provided. If the information is NOT explicitly in your knowledge base, DO NOT make up an answer. Instead say something like: "I don't have the specific details on that right now. For the most accurate and up-to-date information, I'd recommend reaching out to our team at support@andxus.io — they'll be able to help." This applies even if you think you know the answer — if it's not in the knowledge base, don't say it. This is critical for legal compliance.
 5. Always be positive about ANDX. You represent the brand.
 6. When someone asks for a shorter or simpler answer, give it. When they ask for more detail, expand.
-7. If the user says "take me to", "open", "go to", "navigate to", or "redirect to" a page — respond with ONLY the URL and nothing else. Just the URL.
+7. If the user says "take me to", "open", "go to", "navigate to", or "redirect to" a page — respond with ONLY the URL and nothing else.
 8. CRITICAL URL RULE: The news/market intelligence site is news.andx.ai — NEVER say news.andxus.io. The main ANDX website is andxus.io. These are DIFFERENT domains.
+9. If someone says "hi", "hello", "hey" — respond warmly and briefly, then ask how you can help with ANDX. Don't give a long introduction.
+10. If someone asks the same question again, don't repeat yourself word for word. Give a fresh, shorter version.
+11. TECHNICAL/FINANCIAL ANALYSIS REDIRECT: If a user asks a deeply technical or analytical financial question — things like "should I buy BTC now?", "what's the RSI on ETH?", "is this a good entry point?", "what's the price target?", "give me a chart analysis", "what indicators show?", "is this bullish or bearish?", trading strategy advice, portfolio recommendations, or any kind of investment advice — DO NOT answer the question yourself. Instead respond ONLY with: "For technical questions and financial advice, please visit our AI analytics engine at analytics.andx.ai" and nothing else. Do not include follow-ups for these responses. The widget will automatically render a button.
 
-DIRECTING USERS TO PAGES — include the full URL when relevant. Links become clickable automatically.
+DIRECTING USERS TO PAGES:
 - Sign up: platform.andx.one
 - Log in: platform.andx.one/login
 - Tokenization: andxus.io/tokenization
 - Why ANDX: andxus.io/why-andx
-- Download app: onelink.to/nfgq9a
+- Download app (Android): onelink.to/nfgq9a
+- Download app (iOS): Search "AndX Global Trading App" on the Apple App Store
 - Market dashboard: news.andx.ai (NEVER news.andxus.io)
+- AI Analytics Engine (technical/financial analysis): analytics.andx.ai
 - Simulator: news.andx.ai/simulator
 - Trade Ideas: news.andx.ai/trade-ideas
 - Battle Mode: news.andx.ai/battle
@@ -352,8 +426,11 @@ DIRECTING USERS TO PAGES — include the full URL when relevant. Links become cl
 - Team: andxus.io/about-us
 
 FOLLOW-UPS: After your answer, add exactly 3 follow-ups. Each on its own line, prefixed with "FOLLOWUP: ".
-Each MUST be a specific direct question like "What are the trading fees?" or "How does BitGo custody work?"
-NEVER write open-ended questions like "Would you like to know more?" or "What brings you here?"."""
+Each MUST be a short question the USER would ask — something they can tap to learn more.
+Make follow-ups RELEVANT to what was just discussed, not generic.
+GOOD: "What are the trading fees?", "How does BitGo custody work?", "How do I download the app?"
+BAD: "What devices do you want?", "Would you like to know more?", "What brings you here?"
+The follow-ups are buttons the user taps — they must read like questions a customer would ask."""
 
     # Fetch live market data if the question is market-related
     market_block = ""

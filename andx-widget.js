@@ -161,6 +161,13 @@
 .andx-w-action-btn{font-size:10px;padding:5px 12px;border-radius:16px;background:linear-gradient(135deg,#724dfb,#1de4d3);color:#fff;border:none;cursor:pointer;font-weight:600;transition:all 0.2s;font-family:inherit}
 .andx-w-action-btn:hover{box-shadow:0 4px 12px rgba(114,77,251,0.3);transform:translateY(-1px)}
 
+/* Tablet */
+@media(min-width:501px) and (max-width:1024px){
+  #andx-fab{bottom:90px;right:24px}
+  #andx-tooltip{bottom:154px;right:24px}
+  #andx-panel{bottom:158px;right:24px}
+}
+
 /* Mobile */
 @media(max-width:500px){
   #andx-fab{width:50px;height:50px;bottom:90px;right:16px}
@@ -191,7 +198,6 @@
     tt.textContent = 'Need help? Chat with us';
     tt.onclick = function () {
       tt.remove();
-      if (!isOpen) toggleWidget();
     };
     document.body.appendChild(tt);
     setTimeout(function () {
@@ -393,9 +399,9 @@
   function getStarterChips() {
     var path = window.location.pathname.toLowerCase();
     if (path.includes('tokenization')) {
-      return ['What is tokenization?', 'Tell me about Manila One', 'What token types are available?', 'How does the 6-step process work?', 'What are the target returns?', 'How is tokenization regulated?'];
+      return ['What is tokenization?', 'Tell me about Manila One', 'What token types are available?', 'How is it regulated?'];
     } else if (path.includes('why-andx') || path.includes('about')) {
-      return ['Who is the CEO?', 'What makes ANDX different?', 'How is ANDX regulated?', 'What is BitGo custody?', 'How many users does ANDX have?', 'Tell me about the team'];
+      return ['What makes ANDX different?', 'How is ANDX regulated?', 'Who is the CEO?', 'What is BitGo custody?'];
     } else {
       return ['How is ANDX different?', 'Is ANDX safe and regulated?', 'What are the trading fees?', 'How does tokenization work?'];
     }
@@ -549,11 +555,17 @@
   }
 
   /* ── Stream reveal (word-by-word) ────────────────────── */
+  var _cancelStream = false;
+
+  function cancelCurrentStream() {
+    _cancelStream = true;
+  }
+
   function streamReveal(bubbleEl, onDone) {
+    _cancelStream = false;
     var fullHTML = bubbleEl.innerHTML;
     bubbleEl.innerHTML = '';
 
-    // Parse into text tokens — keep HTML tags intact
     var tokens = [];
     var re = /(<[^>]+>)|(\s+)|([^\s<]+)/g;
     var m;
@@ -566,6 +578,11 @@
     var cursor = '<span class="andx-cursor">|</span>';
 
     function step() {
+      if (_cancelStream) {
+        bubbleEl.innerHTML = current || fullHTML;
+        if (onDone) onDone();
+        return;
+      }
       if (idx >= tokens.length) {
         bubbleEl.innerHTML = current;
         if (onDone) onDone();
@@ -575,7 +592,6 @@
       idx++;
       bubbleEl.innerHTML = current + cursor;
       scrollToBottom();
-      // HTML tags reveal instantly
       if (tokens[idx - 1] && tokens[idx - 1].charAt(0) === '<') {
         step();
       } else {
@@ -590,7 +606,7 @@
     // Full https:// URLs
     text = text.replace(/(https?:\/\/[^\s<)"]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
     // Bare domains: platform.andx.one, andxus.io/*, news.andx.ai
-    text = text.replace(/(?<![/"'>])\b((?:platform\.andx\.one|(?:news\.)?andxus\.io)(?:\/[^\s<)"]*)?)/g, function (match) {
+    text = text.replace(/(?<![/"'>])\b((?:platform\.andx\.one|analytics\.andx\.ai|(?:news\.)?andxus\.io)(?:\/[^\s<)"]*)?)/g, function (match) {
       return '<a href="https://' + match + '" target="_blank" rel="noopener">' + match + '</a>';
     });
     return text;
@@ -599,7 +615,12 @@
   /* ── Send message ────────────────────────────────────── */
   function __andxSend() {
     var question = input.value.trim();
-    if (!question || isStreaming) return;
+    if (!question) return;
+
+    // If currently streaming, cancel it and allow the new question
+    if (isStreaming) {
+      cancelCurrentStream();
+    }
 
     input.value = '';
     isStreaming = true;
@@ -653,7 +674,7 @@
         if (autoNav) {
           var urlMatch = answer.match(/https?:\/\/[^\s<)"]+/);
           if (!urlMatch) {
-            var domainMatch = answer.match(/(?:platform\.andx\.one|(?:news\.)?andx\.ai|(?:news\.)?andxus\.io|onelink\.to\/nfgq9a)(?:\/[^\s<)")]*)?/);
+            var domainMatch = answer.match(/(?:platform\.andx\.one|analytics\.andx\.ai|(?:news\.)?andx\.ai|(?:news\.)?andxus\.io|onelink\.to\/nfgq9a)(?:\/[^\s<)")]*)?/);
             if (domainMatch) urlMatch = ['https://' + domainMatch[0]];
           }
           if (urlMatch) {
@@ -691,6 +712,7 @@
       { pattern: 'andxus.io/tokenization', label: 'View Tokenization', url: 'https://andxus.io/tokenization' },
       { pattern: 'andxus.io/about-us', label: 'Meet the Team', url: 'https://andxus.io/about-us' },
       { pattern: 'andxus.io/why-andx', label: 'Why ANDX', url: 'https://andxus.io/why-andx' },
+      { pattern: 'analytics.andx.ai', label: 'Open AI Analytics', url: 'https://analytics.andx.ai' },
       { pattern: 'news.andx.ai', label: 'Market Dashboard', url: 'https://news.andx.ai' },
       { pattern: 'onelink.to/nfgq9a', label: 'Download App', url: 'https://onelink.to/nfgq9a' },
     ];
@@ -732,28 +754,6 @@
   /* ── Init welcome ────────────────────────────────────── */
   showWelcome();
 
-  /* ── Proactive message after 30s idle ────────────────── */
-  setTimeout(function() {
-    if (sessionStorage.getItem('andx-proactive')) return;
-    if (isOpen || userInteracted) return;
-    sessionStorage.setItem('andx-proactive', '1');
-
-    var path = window.location.pathname.toLowerCase();
-    var msg;
-    if (path.includes('tokenization')) {
-      msg = 'Interested in real-world asset tokenization? I can walk you through how it works and explain the Manila One project.';
-    } else if (path.includes('why-andx') || path.includes('about')) {
-      msg = 'Curious what makes ANDX different? Ask me anything about our platform, security, or team.';
-    } else {
-      msg = 'Need help with anything? I can answer questions about ANDX, help you sign up, or explain our features.';
-    }
-
-    if (!isOpen) toggleWidget();
-    setTimeout(function() {
-      var welcome = document.getElementById('andx-w-welcome');
-      if (welcome) welcome.style.display = 'none';
-      appendBubble('ai', msg);
-    }, 500);
-  }, 30000);
+  /* Bot only opens when user clicks the bubble — no auto-open */
 
 })();
