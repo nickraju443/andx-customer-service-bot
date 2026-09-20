@@ -1,0 +1,41 @@
+## Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+## Android Studio / IntelliJ
+.idea/
+*.iml
+*.iws
+.navigation/
+captures/
+.externalNativeBuild
+.cxx/
+local.properties
+
+## Kotlin
+.kotlin/
+
+## Files for the ART/Dalvik VM
+*.dex
+
+## Java class files
+*.class
+
+## Generated files
+bin/
+gen/
+out/
+
+## macOS / Windows
+.DS_Store
+Thumbs.db
+
+## Firebase
+google-services.json
+
+## Editors
+*.swp
+.vscode/

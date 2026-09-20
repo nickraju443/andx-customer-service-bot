@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ANDX Support</title>
+<style>
+  html, body {
+    margin: 0; padding: 0; height: 100%; width: 100%;
+    background: #08061a;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow: hidden;
+  }
+  /* Hide the floating bubble — we want the panel to BE the iframe */
+  #andx-fab { display: none !important; }
+
+  /* Force the panel to fill the iframe and stay open */
+  #andx-panel {
+    position: fixed !important;
+    top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+    width: 100% !important; height: 100% !important;
+    min-width: 0 !important; min-height: 0 !important;
+    max-width: none !important; max-height: none !important;
+    border: none !important; border-radius: 0 !important;
+    resize: none !important;
+    animation: none !important;
+  }
+  #andx-panel::before { display: none !important; }
+</style>
+</head>
+<body>
+<script src="/andx-widget.js"></script>
+<script>
+  // Force the panel open as soon as the widget mounts
+  (function waitAndOpen(tries){
+    var p = document.getElementById('andx-panel');
+    if (p) {
+      p.classList.add('andx-open');
+      p.style.display = 'flex';
+      return;
+    }
+    if (tries > 60) return;
+    setTimeout(function(){ waitAndOpen(tries + 1); }, 50);
+  })(0);
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "name": "@andx/xore-support-bot",
+  "version": "0.1.0",
+  "description": "Native React Native chat component for the ANDX XORE support bot. Drops into iOS + Android with full AI + live-agent parity with the web widget.",
+  "main": "index.ts",
+  "types": "index.ts",
+  "files": [
+    "index.ts",
+    "src",
+    "examples",
+    "README.md"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": ["react-native", "andx", "xore", "support", "chat"],
+  "author": "ANDX <nick@andxus.io>",
+  "license": "UNLICENSED",
+  "peerDependencies": {
+    "react": ">=18.2.0",
+    "react-native": ">=0.73.0",
+    "react-native-svg": ">=14.0.0",
+    "@react-native-async-storage/async-storage": ">=1.21.0",
+    "react-native-reanimated": ">=3.6.0"
+  },
+  "peerDependenciesMeta": {
+    "@react-native-firebase/app": { "optional": true },
+    "@react-native-firebase/messaging": { "optional": true }
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-native": "^0.73.0",
+    "typescript": "^5.3.0"
+  }
+}

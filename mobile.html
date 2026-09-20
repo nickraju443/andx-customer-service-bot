@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ANDX Support</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; background: #08061a; overflow: hidden; }
+</style>
+</head>
+<body>
+<script src="/andx-widget.js"></script>
+<script>
+  // Auto-open the chat and hide the FAB button
+  (function waitForWidget() {
+    var fab = document.getElementById('andx-fab');
+    var panel = document.getElementById('andx-panel');
+    if (fab && panel) {
+      // Hide the floating button
+      fab.style.display = 'none';
+      // Open the chat
+      fab.click();
+      // Make panel full screen
+      panel.style.position = 'fixed';
+      panel.style.top = '0';
+      panel.style.left = '0';
+      panel.style.right = '0';
+      panel.style.bottom = '0';
+      panel.style.width = '100%';
+      panel.style.height = '100%';
+      panel.style.maxHeight = '100%';
+      panel.style.maxWidth = '100%';
+      panel.style.borderRadius = '0';
+      panel.style.border = 'none';
+      panel.style.resize = 'none';
+      // Hide close/minimize buttons since the app controls navigation
+      var btns = panel.querySelectorAll('[data-action="close"], [data-action="min"]');
+      btns.forEach(function(b) { b.style.display = 'none'; });
+      // Remove tooltip if any
+      var tt = document.getElementById('andx-tooltip');
+      if (tt) tt.remove();
+    } else {
+      setTimeout(waitForWidget, 50);
+    }
+  })();
+</script>
+</body>
+</html>

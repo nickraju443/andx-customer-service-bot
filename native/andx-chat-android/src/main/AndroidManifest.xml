@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!--
+      INTERNET is genuinely required by the SDK (network calls to the ANDX backend)
+      so we declare it and let the manifest merger pull it into the host app.
+    -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!--
+      POST_NOTIFICATIONS is only needed if the HOST APP wants push notifications
+      when an agent replies. Host apps that don't opt into push shouldn't have
+      this in their merged manifest, so we declare it here with tools:node="remove"
+      and document the requirement in the README. Apps that want push should add
+      the permission to their OWN manifest.
+    -->
+    <!-- <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> -->
+</manifest>
