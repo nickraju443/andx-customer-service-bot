@@ -1,6 +1,6 @@
 /**
  * ANDX Support Chat Widget v3.0 — Complete Rewrite
- * Drop-in embeddable customer service bot for andxus.io
+ * Drop-in embeddable customer service bot for andx.global
  * Usage: <script src="https://YOUR-BOT-URL/andx-widget.js"></script>
  */
 (function () {
@@ -1175,8 +1175,8 @@
   function linkifyUrls(text) {
     // Full https:// URLs
     text = text.replace(/(https?:\/\/[^\s<)"]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
-    // Bare domains: platform.andx.one, andxus.io/*, news.andx.ai
-    text = text.replace(/(?<![/"'>])\b((?:platform\.andx\.one|analytics\.andx\.ai|(?:news\.)?andxus\.io)(?:\/[^\s<)"]*)?)/g, function (match) {
+    // Bare domains: andx.global and any subdomain (platform., rwa., news., analytics.), news.andxus.io
+    text = text.replace(/(?<![/"'>])\b((?:(?:[\w-]+\.)?andx\.global|(?:news\.)?andxus\.io)(?:\/[^\s<)"]*)?)/g, function (match) {
       return '<a href="https://' + match + '" target="_blank" rel="noopener">' + match + '</a>';
     });
     return text;
@@ -1542,7 +1542,7 @@
         if (autoNav) {
           var urlMatch = answer.match(/https?:\/\/[^\s<)"]+/);
           if (!urlMatch) {
-            var domainMatch = answer.match(/(?:platform\.andx\.one|analytics\.andx\.ai|(?:news\.)?andx\.ai|(?:news\.)?andxus\.io|onelink\.to\/nfgq9a)(?:\/[^\s<)")]*)?/);
+            var domainMatch = answer.match(/(?:(?:[\w-]+\.)?andx\.global|(?:news\.)?andxus\.io|onelink\.to\/nfgq9a)(?:\/[^\s<)")]*)?/);
             if (domainMatch) urlMatch = ['https://' + domainMatch[0]];
           }
           if (urlMatch) {
@@ -1643,13 +1643,13 @@
   /* ── Action buttons below AI responses ────────────────── */
   function renderActionButtons(html, targetThread) {
     var urlMap = [
-      { pattern: 'platform.andx.one/login', label: 'Log In', url: 'https://platform.andx.one/login' },
-      { pattern: 'platform.andx.one', label: 'Sign Up', url: 'https://platform.andx.one' },
-      { pattern: 'andxus.io/tokenization', label: 'View Tokenization', url: 'https://andxus.io/tokenization' },
-      { pattern: 'andxus.io/about-us', label: 'Meet the Team', url: 'https://andxus.io/about-us' },
-      { pattern: 'andxus.io/why-andx', label: 'Why ANDX', url: 'https://andxus.io/why-andx' },
-      { pattern: 'analytics.andx.ai', label: 'Open AI Analytics', url: 'https://analytics.andx.ai' },
-      { pattern: 'news.andx.ai', label: 'Market Dashboard', url: 'https://news.andx.ai' },
+      { pattern: 'platform.andx.global/login', label: 'Log In', url: 'https://platform.andx.global/login' },
+      { pattern: 'platform.andx.global', label: 'Sign Up', url: 'https://platform.andx.global' },
+      { pattern: 'rwa.andx.global', label: 'View Tokenization', url: 'https://rwa.andx.global' },
+      { pattern: 'andx.global/about-us', label: 'Meet the Team', url: 'https://andx.global/about-us' },
+      { pattern: 'andx.global/why-andx', label: 'Why ANDX', url: 'https://andx.global/why-andx' },
+      { pattern: 'analytics.andx.global', label: 'Open AI Analytics', url: 'https://analytics.andx.global' },
+      { pattern: 'news.andx.global', label: 'Market Dashboard', url: 'https://news.andx.global' },
       { pattern: 'onelink.to/nfgq9a', label: 'Download App', url: 'https://onelink.to/nfgq9a' },
     ];
     var found = [];

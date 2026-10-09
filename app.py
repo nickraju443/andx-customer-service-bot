@@ -1,6 +1,6 @@
 """
-ANDX Customer Service Bot — Standalone AI support chatbot for andxus.io
-Separate from the news.andx.ai market intelligence platform.
+ANDX Customer Service Bot — Standalone AI support chatbot for andx.global
+Separate from the news.andx.global market intelligence platform.
 """
 import os, re, time, threading, requests, smtplib
 from email.mime.text import MIMEText
@@ -11,8 +11,10 @@ from flask_cors import CORS
 app = Flask(__name__, static_folder=".")
 CORS(app, resources={r"/api/*": {"origins": [
     "https://andxus.io", "https://www.andxus.io",
+    "https://andx.global", "https://www.andx.global",
     "https://andx.ai", "https://www.andx.ai",
     "https://andx.one", "https://www.andx.one", "https://platform.andx.one",
+    re.compile(r"^https://[\w-]+\.andx\.global$"),
     re.compile(r"^https://[\w-]+\.andx\.ai$"),
     re.compile(r"^https://[\w-]+\.andxus\.io$"),
     re.compile(r"^https://[\w-]+\.andx\.one$"),
@@ -714,7 +716,7 @@ def _build_transcript_html(ticket, entries):
                 "</div>"
             )
     parts.append("<hr style=\"border:none;border-top:1px solid #e5e5e5;margin:24px 0\">")
-    parts.append("<p style=\"color:#888;font-size:12px;line-height:1.5\">Need to continue the conversation? Reply to this email, chat with us again at andxus.io, or call <strong>888-343-4394</strong>.</p>")
+    parts.append("<p style=\"color:#888;font-size:12px;line-height:1.5\">Need to continue the conversation? Reply to this email, chat with us again at andx.global, or call <strong>888-343-4394</strong>.</p>")
     parts.append("</div>")
     return "".join(parts)
 
@@ -966,15 +968,15 @@ ABOUT ANDX THE PLATFORM/COMPANY:
 - COO and Co-Founder: Opender Singh, CFA — Wall Street veteran who left traditional finance to build AI-native Web3 markets.
 - Mission: Unify multi-asset trading, tokenization, secure cross-border payments, real-time financial intelligence, and a gamified participation layer into one next-generation digital finance ecosystem.
 - Tagline: "Crypto Markets. Real-World Assets. One Platform."
-- Website: andxus.io
-- AI Portal: andx.ai — adaptive intelligence systems powering smarter decisions in crypto and beyond. Features XORE AI assistant (launching soon).
+- Website: andx.global
+- AI Portal: andx.global — adaptive intelligence systems powering smarter decisions in crypto and beyond. Features XORE AI assistant (launching soon).
 - Global presence: ANDX operates in the United States (all 50 states), Brazil, Philippines, Turkey, and Dominican Republic with planned further expansion.
 - Contact / Support: support@andxus.io
 - App download (Android): Google Play — search "AndX Global Trading App" or use onelink.to/nfgq9a
 - App download (iOS): Apple App Store — search "AndX Global Trading App"
-- Trading platform login: platform.andx.one
+- Trading platform login: platform.andx.global
 
-TRADING FEATURES (andxus.io main page):
+TRADING FEATURES (andx.global main page):
 - Zero commission trading — $0 execution fees with transparent pricing and AI-driven risk modeling. Market spreads, blockchain network fees, and intermediary bank fees may still apply separately.
 - Available in ALL 50 US states.
 - Deep institutional liquidity — pricing sourced from top-tier liquidity providers.
@@ -1003,7 +1005,7 @@ WHY CHOOSE ANDX OVER COMPETITORS:
 - Free ACH/wire (many charge $5-25 per transfer)
 - No rehypothecation of customer assets (unlike some major exchanges)
 
-TOKENIZATION (andxus.io/tokenization tab):
+TOKENIZATION (rwa.andx.global tab):
 - Tagline: "Tokenize Real Assets. Unlock Global Capital."
 - Institutional tokenization for compliant issuance and distribution of real-world assets (RWAs).
 - Compliance-first workflows built for regulated markets.
@@ -1028,7 +1030,7 @@ MANILA ONE PROJECT (featured on tokenization page):
 - Token type: RealAsset Token (ART) — represents land, buildings, and infrastructure with capital appreciation + income potential.
 - Target returns: 24% Preferred Return with 100% Target Return. These are expected investor return profiles, subject to change, and not a guaranteed offer or solicitation.
 - Featured as ANDX's flagship real-world asset offering.
-- Users can view full asset details and invest through the ANDX trading dashboard at platform.andx.one.
+- Users can view full asset details and invest through the ANDX trading dashboard at platform.andx.global.
 - In simple terms: Manila One lets you invest in a real $100M land development in the Philippines through a digital token. Instead of needing millions to buy property, you can participate with a smaller amount and potentially earn returns as the project develops. The token represents actual ownership in the underlying real estate asset.
 
 ANDX ROADMAP:
@@ -1037,20 +1039,20 @@ ANDX ROADMAP:
 3. Intelligence Edge with AI tools — coming Q2 2026.
 4. Global Velocity payment expansion — coming Q3 2026.
 
-AI FEATURES (coming to beta — "AI Alpha" waitlist on andxus.io):
+AI FEATURES (coming to beta — "AI Alpha" waitlist on andx.global):
 - Real-Time Stop-Loss Logic: AI suggests when to set stop-losses based on actual market volatility, not just a fixed price.
 - "What-If" Backtesting: Test how your portfolio would have performed during past market crashes before risking real money.
 - Contextual Alerts: Get plain-English market analysis delivered to your dashboard — no jargon, just clear insights.
-- XORE: AI assistant on andx.ai — ask anything about getting started with ANDX.
+- XORE: AI assistant on andx.global — ask anything about getting started with ANDX.
 
-ANDX AI PORTAL (andx.ai):
-- andx.ai is the AI intelligence hub — "adaptive intelligence for crypto and beyond."
+ANDX AI PORTAL (andx.global):
+- andx.global is the AI intelligence hub — "adaptive intelligence for crypto and beyond."
 - XORE: AI assistant (coming soon) — conversational guidance to help users get started with ANDX.
-- Tokenization portal: tokenization.andx.ai — dedicated portal for real-world asset tokenization.
+- Tokenization portal: rwa.andx.global — dedicated portal for real-world asset tokenization.
 
 ANDX ECOSYSTEM PRODUCTS:
-- Exchange and Trading (andxus.io) — spot crypto trading, tokenized securities, real-world assets.
-- Tokenization (tokenization.andx.ai) — converting real-world assets into blockchain tokens for fractional ownership and global liquidity.
+- Exchange and Trading (andx.global) — spot crypto trading, tokenized securities, real-world assets.
+- Tokenization (rwa.andx.global) — converting real-world assets into blockchain tokens for fractional ownership and global liquidity.
 - Payments — cryptocurrency-based payment solutions, including EV charging station integration.
 - Cross-Border Transfers — frictionless on-chain remittances using the USDA1 stablecoin. Fast, low-cost international transfers.
 - Gamification — engagement tools including contests, leaderboards, badges, and referral rewards to keep users active and learning.
@@ -1067,7 +1069,7 @@ SUPPORTED ASSETS AND MARKETS:
 - Tokenized real-world assets (real estate, land, infrastructure).
 - Global alternatives and institutional-grade real estate opportunities.
 
-BETA FEATURES (AI Alpha — waitlist on andxus.io):
+BETA FEATURES (AI Alpha — waitlist on andx.global):
 - Portfolio stress-testing tools — test how your portfolio would handle past market crashes.
 - Real-time volatility-based alerts — get notified when market conditions change.
 - Automated stop-loss recommendations based on actual volatility.
@@ -1085,29 +1087,29 @@ GLOBAL PRESENCE:
 - Operating in the United States, Brazil, Philippines, Turkey, and Dominican Republic with planned expansion.
 
 RESOURCES AVAILABLE ON THE PLATFORM:
-- Help Center: accessible from andxus.io footer.
+- Help Center: accessible from andx.global footer.
 - API Access: available for developers building on ANDX.
 - System Status: live monitoring page for platform uptime.
 - Contact support: support@andxus.io
 
-ANDX MARKET INTELLIGENCE (news.andx.ai — separate product):
+ANDX MARKET INTELLIGENCE (news.andx.global — separate product):
 - A free market intelligence terminal with live crypto data, AI newsletters, trade ideas, asset battle arena, signal dashboard, and an AI chatbot.
-- Users can visit news.andx.ai for real-time market analysis.
+- Users can visit news.andx.global for real-time market analysis.
 - Only mention this if someone specifically asks about market data, news, or the intelligence dashboard.
 
 HELPFUL LINKS TO DIRECT USERS:
-- Sign up / Create account: platform.andx.one
-- Login: platform.andx.one/login
+- Sign up / Create account: platform.andx.global
+- Login: platform.andx.global/login
 - Download app (Android): onelink.to/nfgq9a
 - Download app (iOS): Search "AndX Global Trading App" on the Apple App Store
-- Tokenization info: andxus.io/tokenization
-- Why ANDX: andxus.io/why-andx
-- Market intelligence: news.andx.ai
+- Tokenization info: rwa.andx.global
+- Why ANDX: andx.global/why-andx
+- Market intelligence: news.andx.global
 - Contact support: support@andxus.io
-- Help Center, System Status, API Access — available via andxus.io footer
-- Legal: Privacy Policy, AML Policy, Terms and Conditions, Risk Disclosure — all on andxus.io
+- Help Center, System Status, API Access — available via andx.global footer
+- Legal: Privacy Policy, AML Policy, Terms and Conditions, Risk Disclosure — all on andx.global
 
-MEET THE TEAM (andxus.io/about-us):
+MEET THE TEAM (andx.global/about-us):
 
 Viru Raparthi — Founder and CEO
 Seasoned Wall Street financier who managed a $40 billion portfolio. Former executive at Merrill Lynch and Rabobank. Built the ANDX team combining bankers, risk managers, and compliance experts. His vision: "The strength of AndX lies in its people. Our global team combines expertise, passion, and creativity to break boundaries and drive innovation. Together, we are shaping the future of finance and making the impossible, possible."
@@ -1129,10 +1131,10 @@ Senior legal leader and Partner at IX Legal. Known for driving legal excellence 
 """
 
 # ── Market data from news site ──
-NEWS_API = "https://news.andx.ai"
+NEWS_API = "https://andx-dashboard-245374915379.us-central1.run.app"  # live market-intelligence backend (news.andx.global DNS not set yet)
 
 def fetch_market_context():
-    """Fetch live market data from news.andx.ai APIs for market questions."""
+    """Fetch live market data from news.andx.global APIs for market questions."""
     parts = []
 
     # Prices
@@ -1360,7 +1362,7 @@ def api_ask():
                 "from that message (so the user sees the thread), then a blank line, then your fresh answer.\n\n"
             )
 
-    system_prompt = f"""You are ANDX Support — a friendly, knowledgeable AI assistant on the ANDX platform (andxus.io).
+    system_prompt = f"""You are ANDX Support — a friendly, knowledgeable AI assistant on the ANDX platform (andx.global).
 
 PRIMARY MISSION: Help users with ANDX platform questions — trading, fees, security, tokenization, team, sign up, app download, and anything about the company.
 SECONDARY MISSION: If someone asks about market data, crypto prices, news, technical analysis, or signals — you CAN answer using the live data provided. But NEVER bring up market data yourself unless the user specifically asks about it.
@@ -1395,26 +1397,26 @@ CRITICAL RULES:
 5. Always be positive about ANDX. You represent the brand.
 6. When someone asks for a shorter or simpler answer, give it. When they ask for more detail, expand.
 7. If the user says "take me to", "open", "go to", "navigate to", or "redirect to" a page — respond with ONLY the URL and nothing else.
-8. CRITICAL URL RULE: The news/market intelligence site is news.andx.ai — NEVER say news.andxus.io. The main ANDX website is andxus.io. These are DIFFERENT domains.
+8. CRITICAL URL RULE: The news/market intelligence site is news.andx.global — NEVER say news.andxus.io. The main ANDX website is andx.global. These are DIFFERENT domains.
 9. If someone says "hi", "hello", "hey" — respond warmly and briefly, then ask how you can help with ANDX. Don't give a long introduction.
 10. If someone asks the same question again, don't repeat yourself word for word. Give a fresh, shorter version.
-11. TECHNICAL/FINANCIAL ANALYSIS REDIRECT: If a user asks a deeply technical or analytical financial question — things like "should I buy BTC now?", "what's the RSI on ETH?", "is this a good entry point?", "what's the price target?", "give me a chart analysis", "what indicators show?", "is this bullish or bearish?", trading strategy advice, portfolio recommendations, or any kind of investment advice — DO NOT answer the question yourself. Instead respond ONLY with: "For technical questions and financial advice, please visit our AI analytics engine at analytics.andx.ai" and nothing else. Do not include follow-ups for these responses. The widget will automatically render a button.
+11. TECHNICAL/FINANCIAL ANALYSIS REDIRECT: If a user asks a deeply technical or analytical financial question — things like "should I buy BTC now?", "what's the RSI on ETH?", "is this a good entry point?", "what's the price target?", "give me a chart analysis", "what indicators show?", "is this bullish or bearish?", trading strategy advice, portfolio recommendations, or any kind of investment advice — DO NOT answer the question yourself. Instead respond ONLY with: "For technical questions and financial advice, please visit our AI analytics engine at analytics.andx.global" and nothing else. Do not include follow-ups for these responses. The widget will automatically render a button.
 
 DIRECTING USERS TO PAGES:
-- Sign up: platform.andx.one
-- Log in: platform.andx.one/login
-- Tokenization: andxus.io/tokenization
-- Why ANDX: andxus.io/why-andx
+- Sign up: platform.andx.global
+- Log in: platform.andx.global/login
+- Tokenization: rwa.andx.global
+- Why ANDX: andx.global/why-andx
 - Download app (Android): onelink.to/nfgq9a
 - Download app (iOS): Search "AndX Global Trading App" on the Apple App Store
-- Market dashboard: news.andx.ai (NEVER news.andxus.io)
-- AI Analytics Engine (technical/financial analysis): analytics.andx.ai
-- Simulator: news.andx.ai/simulator
-- Trade Ideas: news.andx.ai/trade-ideas
-- Battle Mode: news.andx.ai/battle
-- Signals: news.andx.ai/signals
+- Market dashboard: news.andx.global (NEVER news.andxus.io)
+- AI Analytics Engine (technical/financial analysis): analytics.andx.global
+- Simulator: news.andx.global/simulator
+- Trade Ideas: news.andx.global/trade-ideas
+- Battle Mode: news.andx.global/battle
+- Signals: news.andx.global/signals
 - Support: support@andxus.io
-- Team: andxus.io/about-us
+- Team: andx.global/about-us
 
 FOLLOW-UPS: After your answer, add exactly 3 follow-ups. Each on its own line, prefixed with "FOLLOWUP: ".
 Each MUST be a short question the USER would ask — something they can tap to learn more.
@@ -1476,7 +1478,7 @@ HANDOFF triggers should be genuine — don't offer it pre-emptively. Only when t
         )
         raw_answer = msg.content[0].text
         # Force correct URL — AI sometimes hallucinates news.andxus.io
-        raw_answer = raw_answer.replace("news.andxus.io", "news.andx.ai")
+        raw_answer = raw_answer.replace("news.andxus.io", "news.andx.global")
         answer, follow_ups, handoff = _extract_follow_ups(raw_answer)
         return jsonify({
             "answer": answer,
@@ -1956,7 +1958,7 @@ def _email_agent_reply_async(ticket_id, reply):
             "<div style=\"border-left:3px solid #724dfb;padding:14px 18px;margin:0 0 20px;background:#faf9ff;"
             f"font-size:15px;line-height:1.55;color:#1a1a2e;border-radius:0 6px 6px 0\">{content_html}</div>"
             "<p style=\"color:#888;font-size:12px;line-height:1.5;margin:24px 0 0;border-top:1px solid #eee;padding-top:16px\">"
-            "Reply directly to this email or visit <a href=\"https://andx.ai\" style=\"color:#724dfb\">andx.ai</a> "
+            "Reply directly to this email or visit <a href=\"https://andx.global\" style=\"color:#724dfb\">andx.global</a> "
             "and open the chat to continue the conversation.</p>"
             "</div></div>"
         )

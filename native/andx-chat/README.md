@@ -1,6 +1,6 @@
 # ANDX Chat
 
-This is the support chat from andx.ai, packaged for the native app (iOS + Android). Drop the `<XoreSupportBot />` component into a screen and you get the full thing: AI chat, live agents, queue, reactions, push notifications. Same backend the website already uses, no WebView.
+This is the support chat from andx.global, packaged for the native app (iOS + Android). Drop the `<XoreSupportBot />` component into a screen and you get the full thing: AI chat, live agents, queue, reactions, push notifications. Same backend the website already uses, no WebView.
 
 ## Firebase config
 
@@ -205,7 +205,7 @@ If a user opens the chat on Home, then navigates to Trade while the panel is ope
 
 Already live at `https://andx-bot-245374915379.us-central1.run.app`. No auth needed from the client. All 10 endpoints typed in `src/api/types.ts`.
 
-CORS is open for andx.ai, andxus.io, andx.one (including platform.andx.one and any subdomain), plus localhost. React Native fetch on iOS and Android doesn't send an Origin header anyway, so CORS isn't usually an issue. If you do hit one, email me the origin and I'll add it.
+CORS is open for andx.global, andxus.io, andx.one (including platform.andx.global and any subdomain), plus localhost. React Native fetch on iOS and Android doesn't send an Origin header anyway, so CORS isn't usually an issue. If you do hit one, email me the origin and I'll add it.
 
 If you need to point at a staging or dev backend:
 ```ts

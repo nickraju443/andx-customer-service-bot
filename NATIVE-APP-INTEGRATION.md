@@ -8,7 +8,7 @@ This document gives the mobile dev team three ways to add the ANDX support bot (
 
 **Production URL:** `https://andx-bot-245374915379.us-central1.run.app`
 
-All HTTP. No auth required from the client side. CORS is open to `*.andx.ai`, `*.andxus.io`, `localhost`, and `null` (which covers WebView origins on mobile). If the mobile team uses a custom WebView origin (e.g. `capacitor://`, `ionic://`, `https://app.local`), send the origin to us and we'll add it to the allowlist in `app.py:12`.
+All HTTP. No auth required from the client side. CORS is open to `*.andx.global`, `*.andxus.io`, `localhost`, and `null` (which covers WebView origins on mobile). If the mobile team uses a custom WebView origin (e.g. `capacitor://`, `ionic://`, `https://app.local`), send the origin to us and we'll add it to the allowlist in `app.py:12`.
 
 Anthropic API key, Zoho Desk credentials, and SMTP settings live as env vars on the Cloud Run service — the client never sees or sends them.
 

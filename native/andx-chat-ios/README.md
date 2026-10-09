@@ -1,6 +1,6 @@
 # ANDX Chat (iOS)
 
-This is the support chat from andx.ai, packaged as a Swift Package for iOS. Wire it to the green Support pill at the top right of the app and users get the full thing: AI chat, live agent handoff, queue with heartbeat, reactions, reply-to, push notifications, persistent conversations. Same backend the web widget uses.
+This is the support chat from andx.global, packaged as a Swift Package for iOS. Wire it to the green Support pill at the top right of the app and users get the full thing: AI chat, live agent handoff, queue with heartbeat, reactions, reply-to, push notifications, persistent conversations. Same backend the web widget uses.
 
 ## Firebase config
 
