@@ -1406,9 +1406,10 @@ def _extract_follow_ups(answer):
     for line in lines:
         stripped = line.strip()
         if stripped.startswith("FOLLOWUP:"):
-            q = stripped[len("FOLLOWUP:"):].strip()
-            if q:
-                follow_ups.append(q)
+            for piece in re.split(r"\s*/?\s*FOLLOWUP:\s*", stripped):
+                q = piece.strip().strip("/").strip()
+                if q:
+                    follow_ups.append(q)
         elif stripped.upper() in ("HANDOFF", "HANDOFF:TRUE", "HANDOFF: TRUE") or stripped.upper().startswith("HANDOFF:"):
             val = stripped.split(":", 1)[1].strip().lower() if ":" in stripped else "true"
             if val in ("", "true", "yes", "1"):
@@ -1553,7 +1554,10 @@ COMPETITION SUPPORT RULES (apply whenever the user is a student, mentions a scho
 - Never present a proposed extension, fresh-start week, prize or monthly format as already active. For any account-specific outcome (funding, elimination, missing volume, prize status, late entry, existing accounts, manual trades, multiple bots, withdrawals of starting capital) give the general rule and refer the student to support@andx.ai.
 - Rule 11 (analytics redirect) does NOT apply to questions about the competition bot: its styles, settings, risk controls, why it is or isn't trading, why it is losing money, or how ROI, volume and loss limits are scored. Answer those directly from the competition knowledge.
 - Troubleshooting checklists may run up to 300 words. Keep everything else concise.
-- When YOU ask the student a clarifying question (school, round, cloud vs laptop bot), make the 3 FOLLOWUPs the likely answers they can tap, e.g. FOLLOWUP: I'm at USF / FOLLOWUP: Queens College / FOLLOWUP: I use the cloud bot at bot.andx.ai.
+- When YOU ask the student a clarifying question (school, round, cloud vs laptop bot), make the 3 FOLLOWUPs the likely answers they can tap, each on its OWN line, for example:
+FOLLOWUP: I'm at USF
+FOLLOWUP: I'm at Queens College
+FOLLOWUP: I use the cloud bot at bot.andx.ai
 - Trigger HANDOFF (see below) for missing competition funds, elimination disputes, suspected unauthorized access, or a technical outage that is costing the student trading volume.
 
 OFF-TOPIC HANDLING:
