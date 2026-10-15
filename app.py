@@ -1,6 +1,6 @@
 """
 ANDX Customer Service Bot — Standalone AI support chatbot for andx.global
-Separate from the news.andx.global market intelligence platform.
+Separate from the news.andx.ai market intelligence platform.
 """
 import os, re, time, threading, requests, smtplib
 from email.mime.text import MIMEText
@@ -962,13 +962,14 @@ def _verify_ticket_token(ticket_id, token):
 
 # ── ANDX Knowledge Base ──
 ANDX_KNOWLEDGE = """
-WEBSITES — WHERE EVERYTHING LIVES (the company domain moved from andx.ai to andx.global; andxus.io pages now live on andx.global):
-- Main website: andx.global (Spanish version: andx.global/es/). If a user mentions andx.ai or an andxus.io web page, point them to the andx.global equivalent.
+WEBSITES — WHERE EVERYTHING LIVES (andx.global is the primary company domain; andxus.io pages now live on andx.global):
+- Main website: andx.global (Spanish version: andx.global/es/). If a user mentions an andxus.io web page, point them to the andx.global equivalent.
 - Trading platform (log in, sign up, trade): platform.andx.global — login at platform.andx.global/login, create an account at platform.andx.global/signup.
 - Real-world asset (RWA) tokenization portal: rwa.andx.global. Manila One token page: rwa.andx.global/m1 (the "Get M1 Token" button on andx.global goes here).
 - Fees: andx.global/fees. Why ANDX: andx.global/why-andx. About us / team: andx.global/about-us. News: andx.global/news.
 - Developer API documentation: docs.andx.one.
-- Market intelligence terminal (live prices, AI newsletter, signals, simulator): news.andx.global.
+- Market intelligence terminal (live prices, AI newsletter, signals, simulator): news.andx.ai. AI analytics engine: analytics.andx.ai. (andx.ai and andx.global both serve the main ANDX site; andx.global is the primary address.)
+- University bot trading competition: signup at bot.andx.ai/university, bot dashboard at bot.andx.ai, leaderboard at platform.andx.global/trading-competition, competition support support@andx.ai. Full competition and bot troubleshooting knowledge is in the COMPETITION section below.
 - Support email: support@andxus.io. Live agent phone line: 888-343-4394.
 - Mobile app: "AndX Global Trading App" — Google Play via onelink.to/nfgq9a, and the Apple App Store.
 - andx.global menu: Home, Why AndX, Tokenization, Trading Competitions, Live Markets, Get M1 Token, Login / Sign up. Footer: About AndX, Pricing / Fees, Help Center, API, Contact Us, Regulatory Compliance, Privacy Policy, AML Policy, Cookie Policy, Terms & Conditions, User Disclosure, Risk Disclosure, Limits & Rules.
@@ -1151,8 +1152,8 @@ ANDX ECOSYSTEM PRODUCTS:
 - Tokenization (rwa.andx.global) — converting real-world assets into blockchain tokens for fractional ownership and global liquidity.
 - Payments — cryptocurrency-based payment solutions, including EV charging station integration.
 - Cross-Border Transfers / ANDX Pay — frictionless on-chain remittances using the USDA1 stablecoin. Fast, low-cost international transfers; live for South American remittances and used in the Philippines corridor.
-- Gamification — engagement tools including contests, leaderboards, badges, and referral rewards to keep users active and learning. See the Trading Competitions page on andx.global.
-- ANDX News (andx.global/news) and the market intelligence terminal (news.andx.global).
+- Gamification — engagement tools including contests, leaderboards, badges, and referral rewards to keep users active and learning. See the Trading Competitions page on andx.global and the University Bot Trading Competition (bot.andx.ai/university).
+- ANDX News (andx.global/news) and the market intelligence terminal (news.andx.ai).
 
 DEPOSITS AND WITHDRAWALS:
 - ACH deposits: free, no fees, credited upon settlement — "we credit your account the moment settlement is final, no artificial platform delays."
@@ -1209,9 +1210,9 @@ ANDX NEWS PAGE (andx.global/news):
 - Spotlight press release (April 9, 2026): "BitGo Powers AndX U.S. Launch with Regulated Digital Asset Infrastructure and Trading Connectivity" — built on the infrastructure of BitGo Bank & Trust, National Association, giving ANDX regulated digital asset infrastructure for secure buying, selling and holding of digital assets, with institutional-grade security controls, compliance capabilities and operational safeguards across all 50 states.
 - Regular market-analysis articles (e.g. ETF flows, Ethereum staking, stablecoin regulation, Bitcoin price ranges). For live prices, charts, signals and the AI newsletter, send users to the market intelligence terminal.
 
-ANDX MARKET INTELLIGENCE (news.andx.global — separate product):
+ANDX MARKET INTELLIGENCE (news.andx.ai — separate product):
 - A free market intelligence terminal with live crypto data, AI newsletters, trade ideas, asset battle arena, signal dashboard, and an AI chatbot.
-- Users can visit news.andx.global for real-time market analysis.
+- Users can visit news.andx.ai for real-time market analysis. The AI analytics engine for technical questions is analytics.andx.ai.
 - Only mention this if someone specifically asks about market data, news, or the intelligence dashboard.
 
 HELPFUL LINKS TO DIRECT USERS:
@@ -1224,7 +1225,10 @@ HELPFUL LINKS TO DIRECT USERS:
 - Fees: andx.global/fees
 - Why ANDX: andx.global/why-andx
 - News: andx.global/news
-- Market intelligence: news.andx.global
+- Market intelligence: news.andx.ai
+- AI analytics engine: analytics.andx.ai
+- Trading bot / university competition: bot.andx.ai and bot.andx.ai/university
+- Competition leaderboard: platform.andx.global/trading-competition
 - Developer docs: docs.andx.one
 - Spanish site: andx.global/es/
 - Contact support: support@andxus.io — phone 888-343-4394
@@ -1254,11 +1258,36 @@ Senior legal leader and Partner at IX Legal. Known for driving legal excellence 
 The RWA underwriting team's background: Goldman Sachs, Rabobank, Merrill Lynch, Broadpoint Capital; licensed securities principals (FINRA/SEC); Wharton MBA; IIT Kharagpur.
 """
 
+# ── Extra knowledge files (knowledge/*.md, knowledge/*.txt) ──
+# Drop any deck, FAQ or policy doc into the knowledge/ folder and it is loaded at
+# boot and appended to the system prompt. Files named README* or starting with "_" are skipped.
+KNOWLEDGE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "knowledge")
+
+def load_extra_knowledge():
+    chunks = []
+    try:
+        for fn in sorted(os.listdir(KNOWLEDGE_DIR)):
+            if fn.lower().startswith("readme") or fn.startswith("_") or not fn.lower().endswith((".md", ".txt")):
+                continue
+            with open(os.path.join(KNOWLEDGE_DIR, fn), encoding="utf-8", errors="ignore") as f:
+                body = f.read().strip()
+            if body:
+                chunks.append(f"===== {fn} =====\n{body}")
+    except FileNotFoundError:
+        pass
+    return "\n\n".join(chunks)
+
+EXTRA_KNOWLEDGE = load_extra_knowledge()
+print(f"[knowledge] loaded {len(EXTRA_KNOWLEDGE):,} chars from {KNOWLEDGE_DIR}")
+
+# ── Live website scanner (see site_scan.py) ──
+import site_scan
+
 # ── Market data from news site ──
-NEWS_API = "https://andx-dashboard-245374915379.us-central1.run.app"  # live market-intelligence backend (news.andx.global DNS not set yet)
+NEWS_API = "https://andx-dashboard-245374915379.us-central1.run.app"  # Cloud Run backend behind news.andx.ai (direct URL is the most reliable)
 
 def fetch_market_context():
-    """Fetch live market data from news.andx.global APIs for market questions."""
+    """Fetch live market data from the ANDX market-intelligence backend for market questions."""
     parts = []
 
     # Prices
@@ -1354,6 +1383,19 @@ MARKET_KEYWORDS = ["btc", "bitcoin", "eth", "ethereum", "price", "market", "fear
                    "bull", "bear", "trading", "crypto", "ibit", "gold", "s&p", "rally", "crash",
                    "dominance", "rsi", "macd", "signal", "sentiment", "buy", "sell", "news",
                    "headline", "technical", "analysis", "outlook", "trend", "support", "resistance"]
+
+# ── Markdown normalizer ──
+# The widget renders <strong> but not markdown. Haiku occasionally slips into **bold**,
+# '# headings' or '* bullets' (especially on urgent security replies) — convert them.
+_MD_BOLD = re.compile(r"\*\*(.+?)\*\*")
+_MD_HEADING = re.compile(r"^\s{0,3}#{1,6}\s+", re.M)
+_MD_BULLET = re.compile(r"^\s{0,3}[\*•]\s+", re.M)
+def _normalize_markdown(text):
+    text = _MD_BOLD.sub(r"<strong>\1</strong>", text)
+    text = _MD_HEADING.sub("", text)
+    text = _MD_BULLET.sub("- ", text)
+    return text
+
 
 # ── Follow-up + handoff extraction ──
 def _extract_follow_ups(answer):
@@ -1493,11 +1535,26 @@ SECONDARY MISSION: If someone asks about market data, crypto prices, news, techn
 
 KNOWLEDGE BASE:{ANDX_KNOWLEDGE}
 
+COMPETITION AND TRADING-BOT KNOWLEDGE (student support — authoritative for the University Bot Trading Competition and the bot at bot.andx.ai):
+{EXTRA_KNOWLEDGE}
+
 CONVERSATION AWARENESS (CRITICAL):
 - You have conversation history below. USE IT. If a user says "tell me more" or "what about that" or "how?" — look at what was just discussed and continue naturally.
 - Never ask the user to repeat themselves. If they reference something from earlier in the chat, you should know what they mean.
 - If a user sends a short follow-up like "and the fees?" after asking about trading, you should understand they mean trading fees.
 - Respond like a real person having a conversation, not a search engine giving isolated answers.
+
+COMPETITION SUPPORT RULES (apply whenever the user is a student, mentions a school, the competition, the trading bot, bot.andx.ai, API keys, the leaderboard, ROI, trading volume, the $100 starting balance, or a bot error):
+- Answer from the COMPETITION AND TRADING-BOT KNOWLEDGE section. It overrides the generic ANDX answers for these topics (for example, the competition support email is support@andx.ai, and sign-up for the competition is bot.andx.ai/university).
+- Before answering about dates, prizes, qualification or advancement, ask which school and which competition round the student is in, unless they already said so in the conversation. Schools have different schedules and prize announcements.
+- Before troubleshooting a bot, establish whether it is the hosted cloud bot at bot.andx.ai or a downloaded / custom bot, unless already clear.
+- NEVER ask for, and never accept, an API secret, password, one-time code, seed phrase or a screenshot of the API-key page. If one is pasted, tell the student to delete that key on ANDX and create a new one immediately.
+- When a student reports an error, quote their exact error line first, then give the matched fix from the ERRORS list. If no error matches, ask for the last five Activity log lines as text with sensitive details removed.
+- Never present a proposed extension, fresh-start week, prize or monthly format as already active. For any account-specific outcome (funding, elimination, missing volume, prize status, late entry, existing accounts, manual trades, multiple bots, withdrawals of starting capital) give the general rule and refer the student to support@andx.ai.
+- Rule 11 (analytics redirect) does NOT apply to questions about the competition bot: its styles, settings, risk controls, why it is or isn't trading, why it is losing money, or how ROI, volume and loss limits are scored. Answer those directly from the competition knowledge.
+- Troubleshooting checklists may run up to 300 words. Keep everything else concise.
+- When YOU ask the student a clarifying question (school, round, cloud vs laptop bot), make the 3 FOLLOWUPs the likely answers they can tap, e.g. FOLLOWUP: I'm at USF / FOLLOWUP: Queens College / FOLLOWUP: I use the cloud bot at bot.andx.ai.
+- Trigger HANDOFF (see below) for missing competition funds, elimination disputes, suspected unauthorized access, or a technical outage that is costing the student trading volume.
 
 OFF-TOPIC HANDLING:
 - You ONLY help with ANDX, crypto markets, and related financial topics.
@@ -1517,14 +1574,14 @@ CRITICAL RULES:
 1. NEVER use # headings or * asterisks. Only use <strong> tags for emphasis.
 2. Answer concisely — under 200 words for support questions. For market data questions, up to 350 words.
 3. If the user misspells words or asks vaguely, figure out what they mean. Never ask "what do you mean?"
-4. STRICT RULE — NEVER FABRICATE OR GUESS: Before answering ANY question, check if the answer exists in your knowledge base or the live data provided. If the information is NOT explicitly in your knowledge base, DO NOT make up an answer. Instead say something like: "I don't have the specific details on that right now. For the most accurate and up-to-date information, I'd recommend reaching out to our team at support@andxus.io — they'll be able to help." This applies even if you think you know the answer — if it's not in the knowledge base, don't say it. This is critical for legal compliance.
+4. STRICT RULE — NEVER FABRICATE OR GUESS: Before answering ANY question, check if the answer exists in your knowledge base, the competition knowledge, the live website snapshot, or the live market data provided. If the information is NOT explicitly in your knowledge base, DO NOT make up an answer. Instead say something like: "I don't have the specific details on that right now. For the most accurate and up-to-date information, I'd recommend reaching out to our team at support@andxus.io — they'll be able to help." This applies even if you think you know the answer — if it's not in the knowledge base, don't say it. This is critical for legal compliance.
 5. Always be positive about ANDX. You represent the brand.
 6. When someone asks for a shorter or simpler answer, give it. When they ask for more detail, expand.
 7. If the user says "take me to", "open", "go to", "navigate to", or "redirect to" a page — respond with ONLY the URL and nothing else.
-8. CRITICAL URL RULE: The news/market intelligence site is news.andx.global — NEVER say news.andxus.io. The main ANDX website is andx.global. These are DIFFERENT domains.
+8. CRITICAL URL RULE: The news/market intelligence site is news.andx.ai — NEVER say news.andxus.io or news.andx.global. The main ANDX website is andx.global. The trading bot is bot.andx.ai. These are DIFFERENT domains.
 9. If someone says "hi", "hello", "hey" — respond warmly and briefly, then ask how you can help with ANDX. Don't give a long introduction.
 10. If someone asks the same question again, don't repeat yourself word for word. Give a fresh, shorter version.
-11. TECHNICAL/FINANCIAL ANALYSIS REDIRECT: If a user asks a deeply technical or analytical financial question — things like "should I buy BTC now?", "what's the RSI on ETH?", "is this a good entry point?", "what's the price target?", "give me a chart analysis", "what indicators show?", "is this bullish or bearish?", trading strategy advice, portfolio recommendations, or any kind of investment advice — DO NOT answer the question yourself. Instead respond ONLY with: "For technical questions and financial advice, please visit our AI analytics engine at analytics.andx.global" and nothing else. Do not include follow-ups for these responses. The widget will automatically render a button.
+11. TECHNICAL/FINANCIAL ANALYSIS REDIRECT: If a user asks a deeply technical or analytical financial question — things like "should I buy BTC now?", "what's the RSI on ETH?", "is this a good entry point?", "what's the price target?", "give me a chart analysis", "what indicators show?", "is this bullish or bearish?", trading strategy advice, portfolio recommendations, or any kind of investment advice — DO NOT answer the question yourself. Instead respond ONLY with: "For technical questions and financial advice, please visit our AI analytics engine at analytics.andx.ai" and nothing else. Do not include follow-ups for these responses. The widget will automatically render a button.
 
 DIRECTING USERS TO PAGES:
 - Sign up: platform.andx.global
@@ -1533,13 +1590,17 @@ DIRECTING USERS TO PAGES:
 - Why ANDX: andx.global/why-andx
 - Download app (Android): onelink.to/nfgq9a
 - Download app (iOS): Search "AndX Global Trading App" on the Apple App Store
-- Market dashboard: news.andx.global (NEVER news.andxus.io)
-- AI Analytics Engine (technical/financial analysis): analytics.andx.global
-- Simulator: news.andx.global/simulator
-- Trade Ideas: news.andx.global/trade-ideas
-- Battle Mode: news.andx.global/battle
-- Signals: news.andx.global/signals
-- Support: support@andxus.io
+- Market dashboard: news.andx.ai (NEVER news.andxus.io)
+- AI Analytics Engine (technical/financial analysis): analytics.andx.ai
+- Simulator: news.andx.ai/simulator
+- Trade Ideas: news.andx.ai/trade-ideas
+- Battle Mode: news.andx.ai/battle
+- Signals: news.andx.ai/signals
+- Trading bot dashboard: bot.andx.ai
+- Competition signup: bot.andx.ai/university
+- Competition leaderboard: platform.andx.global/trading-competition
+- Order history: platform.andx.global/spot and platform.andx.global/derivatives
+- Support: support@andxus.io (competition students: support@andx.ai)
 - Team: andx.global/about-us
 
 FOLLOW-UPS: After your answer, add exactly 3 follow-ups. Each on its own line, prefixed with "FOLLOWUP: ".
@@ -1592,18 +1653,39 @@ HANDOFF triggers should be genuine — don't offer it pre-emptively. Only when t
 
     user_msg = f"{market_block}{reply_to_block}{history_block}USER QUESTION: {question}"
 
+    # Keep the website snapshot fresh without ever blocking a chat request
+    if site_scan.is_stale():
+        site_scan.refresh_in_background()
+    snapshot_block = site_scan.prompt_block()
+
+    # The big static prompt is sent as a cached block; the live snapshot (changes a
+    # few times a day) goes in a second, uncached block so cache hits stay high.
+    system_blocks = [{"type": "text", "text": system_prompt, "cache_control": {"type": "ephemeral"}}]
+    if snapshot_block:
+        system_blocks.append({"type": "text", "text": snapshot_block})
+
     try:
         client = anthropic.Anthropic(api_key=api_key)
-        msg = client.messages.create(
-            model="claude-haiku-4-5-20251001",
-            max_tokens=800,
-            system=system_prompt,
-            messages=[{"role": "user", "content": user_msg}],
-        )
+        try:
+            msg = client.messages.create(
+                model="claude-haiku-4-5-20251001",
+                max_tokens=900,
+                system=system_blocks,
+                messages=[{"role": "user", "content": user_msg}],
+            )
+        except TypeError:
+            # very old SDK without block support — fall back to a plain string
+            msg = client.messages.create(
+                model="claude-haiku-4-5-20251001",
+                max_tokens=900,
+                system=system_prompt + ("\n\n" + snapshot_block if snapshot_block else ""),
+                messages=[{"role": "user", "content": user_msg}],
+            )
         raw_answer = msg.content[0].text
         # Force correct URL — AI sometimes hallucinates news.andxus.io
-        raw_answer = raw_answer.replace("news.andxus.io", "news.andx.global")
+        raw_answer = raw_answer.replace("news.andxus.io", "news.andx.ai").replace("news.andx.global", "news.andx.ai").replace("analytics.andx.global", "analytics.andx.ai")
         answer, follow_ups, handoff = _extract_follow_ups(raw_answer)
+        answer = _normalize_markdown(answer)
         return jsonify({
             "answer": answer,
             "follow_ups": follow_ups,
@@ -2170,14 +2252,49 @@ def api_handoff_transcript():
     return jsonify({"ok": False, "message": "Couldn't send the transcript right now. Please try again in a moment."}), 502
 
 
+# ── Website scanner status / manual refresh ──
+SITE_SCAN_TOKEN = os.environ.get("SITE_SCAN_TOKEN", "")
+
+@app.route("/api/site-scan", methods=["GET", "POST", "OPTIONS"])
+def api_site_scan():
+    """GET: scanner status (no page content). POST: force a refresh — needs X-Scan-Token
+    matching SITE_SCAN_TOKEN (set it on the service and point Cloud Scheduler here)."""
+    if request.method == "OPTIONS":
+        return "", 200
+    if request.method == "GET":
+        return jsonify(site_scan.status())
+    token = request.headers.get("X-Scan-Token", "") or (request.get_json(silent=True) or {}).get("token", "")
+    if not SITE_SCAN_TOKEN or token != SITE_SCAN_TOKEN:
+        return jsonify({"ok": False, "error": "unauthorized"}), 403
+    started = site_scan.refresh_in_background(force=True)
+    return jsonify({"ok": True, "started": started, "note": "already running" if not started else "refresh started"})
+
+
+@app.route("/api/site-scan/preview", methods=["GET"])
+def api_site_scan_preview():
+    """What the model currently sees (text). Token-protected because it reveals prompt content."""
+    token = request.headers.get("X-Scan-Token", "") or request.args.get("token", "")
+    if not SITE_SCAN_TOKEN or token != SITE_SCAN_TOKEN:
+        return jsonify({"ok": False, "error": "unauthorized"}), 403
+    return site_scan.prompt_block() or "(no snapshot yet)", 200, {"Content-Type": "text/plain; charset=utf-8"}
+
+
 # ── Health check ──
 @app.route("/health")
 def health():
+    st = site_scan.status()
     return jsonify({
         "status": "ok",
         "service": "andx-customer-service-bot",
         "zoho_configured": _zoho_configured(),
+        "knowledge_chars": len(ANDX_KNOWLEDGE) + len(EXTRA_KNOWLEDGE),
+        "site_scan_last_run": st.get("last_run"),
+        "site_scan_stale": st.get("stale"),
     })
+
+
+# Start the website scanner for every process (python app.py and gunicorn alike).
+site_scan.start_scheduler()
 
 
 if __name__ == "__main__":

@@ -1176,7 +1176,7 @@
     // Full https:// URLs
     text = text.replace(/(https?:\/\/[^\s<)"]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
     // Bare domains: andx.global and any subdomain (platform., rwa., news., analytics.), news.andxus.io
-    text = text.replace(/(?<![/"'>])\b((?:(?:[\w-]+\.)?andx\.global|(?:news\.)?andxus\.io)(?:\/[^\s<)"]*)?)/g, function (match) {
+    text = text.replace(/(?<![/"'>])\b((?:(?:[\w-]+\.)?andx\.global|(?:[\w-]+\.)?andx\.ai|(?:news\.)?andxus\.io)(?:\/[^\s<)"]*)?)/g, function (match) {
       return '<a href="https://' + match + '" target="_blank" rel="noopener">' + match + '</a>';
     });
     return text;
@@ -1542,7 +1542,7 @@
         if (autoNav) {
           var urlMatch = answer.match(/https?:\/\/[^\s<)"]+/);
           if (!urlMatch) {
-            var domainMatch = answer.match(/(?:(?:[\w-]+\.)?andx\.global|(?:news\.)?andxus\.io|onelink\.to\/nfgq9a)(?:\/[^\s<)")]*)?/);
+            var domainMatch = answer.match(/(?:(?:[\w-]+\.)?andx\.global|(?:[\w-]+\.)?andx\.ai|(?:news\.)?andxus\.io|onelink\.to\/nfgq9a)(?:\/[^\s<)")]*)?/);
             if (domainMatch) urlMatch = ['https://' + domainMatch[0]];
           }
           if (urlMatch) {
@@ -1648,8 +1648,8 @@
       { pattern: 'rwa.andx.global', label: 'View Tokenization', url: 'https://rwa.andx.global' },
       { pattern: 'andx.global/about-us', label: 'Meet the Team', url: 'https://andx.global/about-us' },
       { pattern: 'andx.global/why-andx', label: 'Why ANDX', url: 'https://andx.global/why-andx' },
-      { pattern: 'analytics.andx.global', label: 'Open AI Analytics', url: 'https://analytics.andx.global' },
-      { pattern: 'news.andx.global', label: 'Market Dashboard', url: 'https://news.andx.global' },
+      { pattern: 'analytics.andx.ai', label: 'Open AI Analytics', url: 'https://analytics.andx.ai' },
+      { pattern: 'news.andx.ai', label: 'Market Dashboard', url: 'https://news.andx.ai' },
       { pattern: 'onelink.to/nfgq9a', label: 'Download App', url: 'https://onelink.to/nfgq9a' },
     ];
     var found = [];
