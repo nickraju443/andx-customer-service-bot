@@ -1,5 +1,5 @@
 """
-ANDX Customer Service Bot — Standalone AI support chatbot for andx.global
+ANDX Customer Service Bot — Standalone AI support chatbot for andx.ai
 Separate from the news.andx.ai market intelligence platform.
 """
 import os, re, time, threading, requests, smtplib
@@ -716,7 +716,7 @@ def _build_transcript_html(ticket, entries):
                 "</div>"
             )
     parts.append("<hr style=\"border:none;border-top:1px solid #e5e5e5;margin:24px 0\">")
-    parts.append("<p style=\"color:#888;font-size:12px;line-height:1.5\">Need to continue the conversation? Reply to this email, chat with us again at andx.global, or call <strong>888-343-4394</strong>.</p>")
+    parts.append("<p style=\"color:#888;font-size:12px;line-height:1.5\">Need to continue the conversation? Reply to this email, chat with us again at andx.ai, or call <strong>888-343-4394</strong>.</p>")
     parts.append("</div>")
     return "".join(parts)
 
@@ -962,34 +962,39 @@ def _verify_ticket_token(ticket_id, token):
 
 # ── ANDX Knowledge Base ──
 ANDX_KNOWLEDGE = """
-WEBSITES — WHERE EVERYTHING LIVES (andx.global is the primary company domain; andxus.io pages now live on andx.global):
-- Main website: andx.global (Spanish version: andx.global/es/). If a user mentions an andxus.io web page, point them to the andx.global equivalent.
-- Trading platform (log in, sign up, trade): platform.andx.global — login at platform.andx.global/login, create an account at platform.andx.global/signup.
-- Real-world asset (RWA) tokenization portal: rwa.andx.global. Manila One token page: rwa.andx.global/m1 (the "Get M1 Token" button on andx.global goes here).
-- Fees: andx.global/fees. Why ANDX: andx.global/why-andx. About us / team: andx.global/about-us. News: andx.global/news.
-- Developer API documentation: docs.andx.one.
-- Market intelligence terminal (live prices, AI newsletter, signals, simulator): news.andx.ai. AI analytics engine: analytics.andx.ai. (andx.ai and andx.global both serve the main ANDX site; andx.global is the primary address.)
-- University bot trading competition: signup at bot.andx.ai/university, bot dashboard at bot.andx.ai, leaderboard at platform.andx.global/trading-competition, competition support support@andx.ai. Full competition and bot troubleshooting knowledge is in the COMPETITION section below.
-- Support email: support@andxus.io. Live agent phone line: 888-343-4394.
-- Mobile app: "AndX Global Trading App" — Google Play via onelink.to/nfgq9a, and the Apple App Store.
-- andx.global menu: Home, Why AndX, Tokenization, Trading Competitions, Live Markets, Get M1 Token, Login / Sign up. Footer: About AndX, Pricing / Fees, Help Center, API, Contact Us, Regulatory Compliance, Privacy Policy, AML Policy, Cookie Policy, Terms & Conditions, User Disclosure, Risk Disclosure, Limits & Rules.
-- Trading Competitions: andx.global has a Trading Competitions page in its main menu. Dates, prizes and rules are on that page — direct users there; never invent prizes or rules.
+WEBSITES — WHERE EVERYTHING LIVES (every ANDX web property is on andx.ai; never give .global or andxus.io links):
+- Main website: andx.ai (Spanish version: andx.ai/es/). Pages: andx.ai/how-it-works, andx.ai/m1 (Manila One), andx.ai/andx-tokenization (RWA tokens), andx.ai/offerings, andx.ai/market (Live Markets — live crypto prices and asset directory), andx.ai/market-insights, andx.ai/news (ANDX news, market analysis and press releases; articles live at andx.ai/posts/...), andx.ai/ai-analytics, andx.ai/bot-trading-competition (Trading Competitions), andx.ai/fees, andx.ai/about-us, andx.ai/contact-us (contact form), andx.ai/regulatory-compliance, legal pages at andx.ai/disclosures/privacy-policy, /aml-policy, /cookie-policy, /terms-and-conditions, /user-disclosure, /risk-disclosure.
+- Trading platform (log in, sign up, KYC, API keys, trade, order history): platform.andx.ai — login platform.andx.ai/login, create an account platform.andx.ai/signup, spot order history platform.andx.ai/spot, derivatives platform.andx.ai/derivatives, competition leaderboards platform.andx.ai/trading-competition. "Trade Crypto" buttons on andx.ai go to platform.andx.ai.
+- Real-world asset (RWA) tokenization portal: rwa.andx.ai — all offerings rwa.andx.ai/offerings, Manila One rwa.andx.ai/m1, register interest in pipeline projects rwa.andx.ai/register-interest, regulatory detail rwa.andx.ai/regulatory-compliance.
+- Trading bot and University Bot Trading Competition: bot.andx.ai (bot dashboard), bot.andx.ai/university (competition hub, signup, bot library, leaderboard, FAQ), bot.andx.ai/university/rules (official rules).
+- Market intelligence terminal (live prices, AI newsletter, signals, simulator): news.andx.ai. AI analytics engine for technical questions: analytics.andx.ai.
+- Help Center: us-support.andx.ai. Developer API documentation: docs.andx.one (the one address not on andx.ai).
+- Support email: support@andx.ai (the only support address). Live agent phone line: 888-343-4394.
+- Mobile app: iOS "ANDX US Crypto Trading" — apps.apple.com/us/app/andx-us-crypto-trading/id6754659164; Android — play.google.com/store/apps/details?id=one.andx.platform (short link onelink.to/nfgq9a). Sign up on the web, iOS or Android.
+- andx.ai menu: Home, How It Works, Manila One, RWA Tokens / Tokenization, Crypto Exchange, Live Markets (Overview, Market Insights, News, AI Analytics), AndX Pay, Trading Competitions, plus "Get Manila One Token" and "Trade Crypto" buttons. Footer: About AndX, Pricing / Fees, Help Center, API, Contact Us, Regulatory Compliance, Privacy Policy, AML Policy, Cookie Policy, Terms & Conditions, User Disclosure, Risk Disclosure, Limits & Rules.
 
-ABOUT ANDX THE PLATFORM/COMPANY:
-- ANDX Global is a licensed, regulated crypto exchange and digital finance platform serving 2,000,000+ users globally with 79,900 daily active traders and 99% uptime during peak volatility.
+ABOUT ANDX THE PLATFORM/COMPANY ("One Platform for Your Digital Capital — Own. Invest. Move."):
+- ANDX Global is a licensed, regulated crypto exchange and digital finance platform bringing digital assets, tokenized real-world assets and global capital movement together on one platform. Trusted by 3M+ users worldwide, 80,000+ daily active traders, 250+ assets available, 99.99%+ uptime during peak market volatility (figures on andx.ai).
+- Three things you can do: own digital assets (buy, sell and hold 250+ cryptocurrencies and tokens, and trade crypto derivatives), invest in real-world assets (tokenized real estate such as Manila One, from $25), and move capital globally with AndX Pay (cross-border remittances, e.g. USD to PHP).
 - CEO and Founder: Viru Raparthi — built the team combining bankers, risk managers, and compliance experts.
 - COO and Co-Founder: Opender Singh, CFA — Wall Street veteran who left traditional finance to build AI-native Web3 markets.
 - Mission: Unify multi-asset trading, tokenization, secure cross-border payments, real-time financial intelligence, and a gamified participation layer into one next-generation digital finance ecosystem.
 - Tagline: "Crypto Markets. Real-World Assets. One Platform." Company motto: "We Built the Infrastructure, You Fly the Plane."
 - Founders' story: ANDX was founded because the team was tired of exchanges that acted like casinos. They wanted a professional trading environment built on the standards of traditional finance — "Veterans of Finance. Architects of DeFi." The team spent decades in institutional banking and risk management building systems that don't break.
-- Website: andx.global
-- Global presence: ANDX operates in the United States (all 50 states), Brazil, Philippines, Turkey, and Dominican Republic with planned further expansion.
-- Contact / Support: support@andxus.io — Live agent phone: 888-343-4394
-- App download (Android): Google Play — search "AndX Global Trading App" or use onelink.to/nfgq9a
-- App download (iOS): Apple App Store — search "AndX Global Trading App"
-- Trading platform login: platform.andx.global
+- Website: andx.ai
+- Global presence: ANDX operates in the United States (all 50 states, including New York), Brazil, Philippines, Turkey, and Dominican Republic with planned further expansion. It is the #3 largest exchange in Turkey.
+- Contact / Support: support@andx.ai — Live agent phone: 888-343-4394 — contact form at andx.ai/contact-us — Help Center us-support.andx.ai
+- App download (Android): Google Play "ANDX" — play.google.com/store/apps/details?id=one.andx.platform or onelink.to/nfgq9a
+- App download (iOS): App Store "ANDX US Crypto Trading" — apps.apple.com/us/app/andx-us-crypto-trading/id6754659164
+- Trading platform login: platform.andx.ai
 
-TRADING FEATURES (andx.global main page):
+HOW IT WORKS (andx.ai/how-it-works — "Three Steps. Full Control. From your bank to the blockchain."):
+1. Create and fund: sign up on the web, iOS or Android; fund with free ACH or a same-day wire; no artificial delays.
+2. Trade or invest: trade 250+ digital assets with $0 commission, or access tokenized real-world assets like Manila One from just $25.
+3. Move your money: withdraw to your bank on demand or to your own wallet; send across borders with AndX Pay.
+- Flow of funds: your bank → BitGo custody (cold storage, held in custody for you, $250M cold-storage insurance) → the AndX platform (trade or withdraw).
+
+TRADING FEATURES (andx.ai):
 - Zero commission trading — $0 execution fees with transparent pricing and AI-driven risk modeling. Market spreads, blockchain network fees, and intermediary bank fees may still apply separately.
 - Available in ALL 50 US states.
 - Deep institutional liquidity — pricing sourced from top-tier liquidity providers. "Stop letting high fees and order slippage eat your alpha."
@@ -998,244 +1003,191 @@ TRADING FEATURES (andx.global main page):
 - Direct redemption to linked bank accounts on demand.
 - Self-custodial withdrawals — withdraw to your own wallet whenever you want.
 - No black-box operations, no artificial withdrawal delays, and no regulatory shortcuts.
-- Trade from global alternatives to institutional real estate and RWAs. "From Blue Chips to Challenger Alts — if it has liquidity, it's here."
-- Access exclusive institutional-grade opportunities — like the Manila One land project — directly from your trade dashboard.
+- 250+ assets: from blue chips to challenger alts — "if it has liquidity, it's here" — plus crypto derivatives and tokenized real-world assets. Live prices and the asset directory: andx.ai/market.
+- Access institutional-grade opportunities like the Manila One land project directly from your trade dashboard.
 
-FEES AND PRICING (andx.global/fees — "Transparent Trading Fees & Zero Commissions"):
+FEES AND PRICING (andx.ai/fees — "Transparent Trading Fees & Zero Commissions"):
 - Trading commission: $0.00. ACH deposit and withdrawal: $0.00. Inactivity fee: $0.00. Instant buy / convenience fee: $0.00. Account maintenance / monthly fee: $0.00.
 - No subscription tiers and no hidden "convenience fees".
 - Comparison published on the fees page (standard retail pricing tiers of major U.S. digital asset exchanges as of March 2026): trading commission 0.40%–1.50%; ACH deposit/withdrawal $0.00–$5.00; instant buy / convenience fee up to 3.99%; account maintenance / monthly fee $0.00–$29.99. Competitor fees vary by trading volume, platform version ("Pro" vs "Retail") and payment method.
-- How ANDX earns revenue: a small spread — the difference between the buy and sell price — on every transaction. This keeps core trading commissions at zero while funding institution-grade infrastructure and regulatory standards. "Most exchanges profit by charging you every time you move. We profit by providing the infrastructure that makes your money move faster."
+- How ANDX earns revenue: a small spread — the difference between the buy and sell price — on every transaction. This keeps core trading commissions at zero while funding institution-grade infrastructure and regulatory standards.
 - Required disclosure (mention whenever fees come up): "$0 commission" refers to ANDX execution fees. All trades are subject to a market spread. Additional third-party costs such as blockchain network (gas) fees and intermediary bank fees for deposits or withdrawals may apply.
-- Do NOT quote a specific spread percentage or trading limit — they are not published in this knowledge base. For exact spreads or limits, point users to the Fees page and the "Limits & Rules" page on andx.global, or to support@andxus.io.
+- Do NOT quote a specific spread percentage, deposit minimum or trading limit — they are not published in this knowledge base. Never claim there is "no minimum deposit". For exact spreads, minimums or limits, point users to andx.ai/fees, the "Limits & Rules" footer link, or support@andx.ai.
 
 SECURITY AND COMPLIANCE:
-- FinCEN-registered Money Services Business.
-- Bank Secrecy Act compliant.
+- FinCEN-registered Money Services Business (entity ANDX USA LLC, registration number 31000316280690).
+- Bank Secrecy Act compliant; KYC and AML controls are built into the platform.
 - 1:1 asset reserves — ANDX maintains full reserves at all times. "We do not lend out your crypto to generate yield for ourselves."
-- Custody: BitGo institutional-grade custody. Assets held offline in air-gapped vaults, insulated from remote attacks.
-- Insurance: $250M insurance policy backed by Lloyd's of London syndicate. Coverage is for BitGo custody, subject to terms, conditions and exclusions; it does not cover all losses or scenarios and does not cover investment losses.
+- Custody: BitGo institutional-grade custody. Assets held offline in air-gapped vaults, insulated from remote attacks. Client funds are held in bankruptcy-remote accounts.
+- Insurance: $250M cold-storage insurance through BitGo, backed by a syndicate of insurers at Lloyd's of London. Coverage is for BitGo custody, subject to terms, conditions and exclusions; it does not cover all losses or scenarios and does not cover investment losses.
 - ANDX does NOT lend or rehypothecate customer assets. Customer assets are held in custody for the benefit of customers only and are not used for the company's own purposes.
-- KYC/AML compliance with encrypted data handling per global standards.
-- Federal bank oversight via BitGo OCC Charter.
+- Federal bank oversight via BitGo's OCC Charter.
 
-HOW CUSTODY WORKS (andx.global/why-andx — "We Don't Touch Your Coins"):
-- Flow of funds: your bank (FDIC-insured bank account) → BitGo cold vault (insured) → ANDX (encrypted platform layer).
+HOW CUSTODY WORKS (andx.ai — "We Don't Touch Your Assets"):
+- Flow of funds: your bank → BitGo cold vault (insured) → the ANDX platform.
 - ANDX partners with BitGo, the global standard in institutional digital asset custody.
-- Comparison table on the Why ANDX page: Federal bank oversight — ANDX: yes (via BitGo OCC Charter); major competitors: varies, often state-level only. SEC/FINRA alignment — ANDX: yes (via MARV Capital); competitors: frequently unlicensed. 50-state coverage — ANDX: yes; competitors: limited.
+- Comparison table on andx.ai: Federal bank oversight — ANDX: yes (via BitGo OCC Charter); major competitors: varies, often state-level only. SEC/FINRA alignment — ANDX: yes (via MARV Capital); competitors: frequently unlicensed. 50-state coverage — ANDX: yes; competitors: limited.
 - Banking rails ("We Don't Lock Up Your Funds"): other exchanges hold your funds long after the bank has cleared them; ANDX uses standard US banking rails with zero artificial delays. "When the money hits our account, it's yours to trade or withdraw."
-- Battle-tested at scale: ANDX is built on a global exchange engine that is already live and proven — "We didn't build from scratch; we deployed a fortress."
+- Battle-tested at scale: ANDX is built on a global exchange engine that is already live and proven — "AndX is not a startup experiment."
 
-REGULATED ENTITIES (public-record details published on rwa.andx.global):
-- Custody: BitGo Trust Company — OCC-chartered National Trust Bank with a NYDFS Trust Charter; bankruptcy-remote accounts; $250M cold-storage insurance.
-- Broker-dealer: MARV Capital Inc. facilitates U.S. securities offerings — CRD 104390 / SEC 8-52855; verifiable on FINRA BrokerCheck. MARV Capital is the placement agent for U.S. offerings.
-- Money transmission: ANDX USA LLC is a FinCEN-registered Money Services Business (MSB registration 31000316280690) with 50-state coverage.
-- On-chain enforcement: tokenized securities use the ERC-3643 security-token standard — KYC/AML whitelisting and transfer restrictions are enforced at the smart-contract level.
-- Trading infrastructure: BitGo Bank & Trust, National Association powers ANDX's U.S. launch with regulated digital asset infrastructure and trading connectivity (press release, April 9, 2026).
-- Custody, securities and money transmission each run through a licensed, registered entity verifiable on public record. Individual offerings carry their own terms and risks.
+REGULATED ENTITIES (public-record details from andx.ai/regulatory-compliance):
+- "Compliance-first" architecture; comprehensive services across all 50 U.S. states, including New York, through Tier-1 regulated infrastructure partners.
+- Custody: BitGo Trust Company, Inc. — OCC-regulated National Trust Bank with a NYDFS Trust Charter; coverage in all 50 U.S. states; bankruptcy-remote accounts; $250M cold-storage insurance.
+- Broker-dealer: MARV Capital Inc. — registered broker-dealer regulated by FINRA / SEC; CRD 104390 / SEC 8-52855; verifiable on FINRA BrokerCheck. MARV Capital is the placement agent for U.S. securities offerings.
+- Money transmission: ANDX USA LLC — FinCEN-registered Money Services Business, registration 31000316280690, 50-state coverage.
+- On-chain enforcement: tokenized securities use the ERC-3643 standard — KYC/AML whitelisting and transfer restrictions enforced at the smart-contract level.
+- Trading infrastructure: BitGo Bank & Trust, National Association powers ANDX's U.S. launch (press release, April 9, 2026).
+- Full detail: andx.ai/regulatory-compliance and rwa.andx.ai/regulatory-compliance.
 
 WHY CHOOSE ANDX OVER COMPETITORS:
 - $0 commissions (major U.S. exchanges charge 0.40%–1.50% per trade)
-- All 50 states (many exchanges block certain states)
+- All 50 states including New York (many exchanges block certain states)
 - BitGo custody with $250M insurance (most use less secure solutions)
 - 1:1 reserves (no fractional reserve risk)
 - Free ACH/wire (many charge up to $5 per transfer)
 - No rehypothecation of customer assets (unlike some major exchanges)
 - No inactivity, maintenance, monthly or instant-buy convenience fees
 
-TOKENIZATION (rwa.andx.global):
-- Tagline: "Tokenize Real Assets. Unlock Global Capital." / "Real-World Assets, Tokenized and Onchain."
-- Institutional tokenization for compliant issuance and distribution of real-world assets (RWAs).
-- Compliance-first workflows built for regulated markets.
-- Programmable distributions, near-real-time reporting, and automated operations.
-- Faster settlement and cross-border investor access.
+TOKENIZATION (andx.ai/andx-tokenization and rwa.andx.ai — "Own What the Institutions Own. Real-world assets. Tokenized. Regulated. Onchain."):
+- Institutional-grade tokenization for compliant issuance and distribution of real-world assets (RWAs): private credit, fractional real estate, infrastructure (including GPU compute) and treasury yield.
+- Minimum investment: from $25. Open to US and international investors — a one-time check confirms what you qualify for.
+- $1.5B+ active tokenization pipeline (andx.ai). Low entry point, built-in liquidity, global footprint, inflation and currency hedging.
+- Underwriting standards: 2.0x minimum collateral coverage (every secured token holds collateral of at least 2.0x outstanding token value); 24% minimum preferred return where structured (contractual and senior — token holders are paid before the sponsor; non-payment is an enforceable event of default; "a floor, not a target"); 100% selective by design (ANDX passes on most assets presented to it).
 - In simple terms: Tokenization means taking a real asset (like a building or land) and creating a digital token that represents ownership of a piece of it. This lets anyone invest in assets that used to only be available to rich investors, starting with smaller amounts.
 - 6-step process: (1) Asset verification and SPV formation, (2) Legal compliance and KYC/AML screening, (3) Smart contract deployment, (4) Primary offering issuance, (5) Post-issuance operations with distributions and reporting, (6) Secondary liquidity options where permitted.
-- Security: Third-party smart contract audits, multi-signature custody with encryption.
-- Token types:
-  - RealAsset Tokens (ART): Land, buildings, infrastructure — earn from property value going up and rental income.
-  - Yield Tokens (AYT): Like bonds but digital — earn regular interest payments.
-  - Growth Tokens (AGT): Invest in development projects — earn as the project grows.
-  - Liquidity Reserve (ALR): Helps keep the market stable — like a safety net.
-  - Fan Tokens (FNT): Get exclusive access and rewards — like a VIP membership.
-  - Private Company Tokens (PCT): Own a piece of a private company — like stock but tokenized.
-  - Novelty Tokens (NVT): Collectible and unique digital assets similar to RealAsset Tokens.
-- Tokenization is SEC/BSP-aligned with audited smart contracts and encrypted identity management.
-- Secondary liquidity available via ATS/exchanges or structured buybacks where permitted.
+- Security: third-party smart contract audits, multi-signature custody with encryption; ERC-3643 security tokens.
+- Token types: RealAsset Tokens (ART) — land, buildings, infrastructure; Yield Tokens (AYT) — bond-like regular interest; Growth Tokens (AGT) — development projects; Liquidity Reserve (ALR) — market stability; Fan Tokens (FNT) — access and rewards; Private Company Tokens (PCT) — tokenized private equity; Novelty Tokens (NVT) — collectibles.
+- Philosophy: bring the actual institutional products — same underwriting, structural protections and governance — to anyone with $25–$100 and a phone. Not meme tokens, pump-and-dumps or "utility" tokens with no underlying asset. Every token has real income or collateral behind it, credit enhancement, readable governance and liquidity by design.
 
-REAL-WORLD ASSETS PORTAL (rwa.andx.global — "The asset classes Wall Street kept to itself. Now yours."):
-- What it is: institutional-grade tokenization of income-producing real assets, available to everyone — private credit, fractional real estate, infrastructure and treasury yield.
-- Minimum investment: offerings start from $100 (the portal also lists a $25 platform minimum). Every offering states its own minimum, yield, term, collateral and exit.
-- Portal stats: $750M+ active tokenization pipeline, 5 regulated jurisdictions, 4 continents served.
-- Return objectives covered: liquid income (cash today), yield real estate (own and earn), capital appreciation (built over time), global inflation hedge.
-- Philosophy: bring the actual institutional products — same underwriting standards, structural protections and governance — to anyone with $100 and a phone. Not meme tokens, pump-and-dumps or "utility" tokens with no underlying asset. Every token has real income or collateral behind it, credit enhancement (collateral, preferred returns, seniority in the stack), governance you can read (voting rights, reporting, enforceable on-chain protections) and liquidity by design.
-- Examples the site gives: own $100 of a pre-development land parcel in Manila; a piece of a beachfront resort in the Dominican Republic; senior debt secured against 120 homes in Massachusetts; a fraction of a cultural heritage collection.
-
-CURRENT AND UPCOMING RWA OFFERINGS (status as listed on rwa.andx.global — always tell users to check the portal for live status):
-- Manila One Token — Philippines — raw land, pre-development — 24% preferred return — AVAILABLE NOW (rwa.andx.global/m1).
-- US Treasury Yield Access — USA — ~5.2% per annum — coming soon.
-- Punta Cana Resort Construction — Dominican Republic — fixed + upside — coming soon.
-- CMBS Odd-Lots Program — USA — spread income — coming soon.
+RWA OFFERINGS (rwa.andx.ai/offerings — "Dollar-denominated income, on contractual terms"; filter by asset type, location and status; statuses change — always check the live snapshot or the page):
+- Manila One Token — Philippines — raw land, pre-development — 24% preferred — AVAILABLE NOW / open now ("Get Token Access").
+- Jersey City Condo Development — New Jersey, USA — pre-development finance — fixed return — coming soon (register interest).
+- Punta Cana Resort Construction — Dominican Republic — airport + resort construction finance — fixed + upside — coming soon.
+- 120-Home Residential Portfolio — Northeast USA — rental yield + fractional ownership — monthly distributions — in the pipeline.
+- Philippine Real Estate Senior Loans — Philippines — high-inflation hedge — USD yield — in the pipeline.
+- LATAM Income Assets — Brazil — emerging-market yield — dollar-denominated protection — in the pipeline.
+- Turkish Real Estate Senior Loans — Turkey — USD yield — in the pipeline.
+- Private Credit Notes — global — tokenized fixed income — ~8–14% target — in the pipeline.
+- CMBS Odd-Lots Program — USA — US structured credit, rolling — spread income — in the pipeline.
+- US Treasury Yield Access — USA — short-duration government securities — ~5.2% pa — in the pipeline.
+- GPU Compute Infrastructure — global — NVIDIA data-center distributed compute — revenue share — in the pipeline.
 - Chinese Antiquities (UAJP) — China — appreciation — coming soon.
-- NE USA Residential Portfolio — Northeast USA — yield + equity — in the pipeline.
-- Jersey City Condo Development — New Jersey, USA — fixed return — in the pipeline.
-- GPU Compute Infrastructure — global, NVIDIA data-center distributed compute — revenue share — in the pipeline.
-- Users can "Register Interest" on coming-soon offerings and "Invest Now" on available ones. "Every asset shows its status and its terms."
+- Users can register interest in pipeline projects at rwa.andx.ai/register-interest (name, email, tick the projects of interest) or request a new listing via andx.ai/contact-us.
 
-RWA UNDERWRITING STANDARDS ("We don't tokenize for the sake of it"):
-- Every asset clears an institutional underwriting filter before it is offered. ANDX passes on most assets presented to it — "selective by design"; quality origination is the most important thing they do.
-- Minimum collateral coverage: every secured token keeps asset collateral of at least 2.0x the outstanding token value — a cushion that absorbs volatility before principal is at risk.
-- Minimum preferred return: where a preferred return is structured, it is contractual and senior — token holders are paid before the sponsor, and non-payment is an enforceable event of default. "A floor, not a target."
-- The underwriting team comes from Goldman Sachs, Merrill Lynch, Rabobank and Broadpoint Capital, with decades in structured credit, ABS, CLOs and private credit; licensed securities principals (FINRA/SEC); Wharton MBA and IIT Kharagpur backgrounds.
+HOW TO INVEST IN AN RWA OFFERING:
+- Who can invest: US and international investors; a one-time eligibility check confirms what you qualify for (accredited and retail investors in the US; Reg D, Reg S and Reg CF offerings; MARV Capital is the placement agent).
+- Minimum: from $25.
+- How to fund: wire, stablecoin or crypto (tokenization page); Manila One also lists card and ACH. Tokens are credited to your wallet.
+- Steps: open an ANDX account (platform.andx.ai) → complete the one-time eligibility / identity check → fund → choose the offering (every open offering shows yield, term, collateral and exit) → subscribe → earn and monitor (income on schedule, real-time NAV, quarterly reports, on-chain governance) → exit or rotate.
+- How to get out ("Know Your Exit Before You Enter"): (1) sell on the exchange — tokens list on ANDX's regulated exchanges with GSR providing committed two-sided market-making; (2) redeem at a window — semi-annual redemption at NAV governed by the offering's smart contract; (3) hold to maturity — every offering has a maturity date or defined enforcement; non-payment of a preferred return is an event of default.
+- Where available: all 50 US states and internationally in Turkey (via the Bitexen Exchange), the Philippines (active distribution; AndX Pay turns income distributions into instant remittances; $17B+ annual remittance market) and Latin America (Brazil, Mexico, Argentina; AndX Pay live for South American remittances; Brazil exchange operational).
+- Remittance idea ("Send the Income. Keep the Principal."): invest the principal in an income-producing token and send the monthly income home instead of drawing down savings. Illustrative example: $10,000 at an illustrative 10% p.a. pays ~$83/month, sent as the remittance, while the $10,000 principal stays intact after 12 months. An illustration, not a guarantee.
+- Risk disclosure (include when discussing any offering or expected return): all investments involve risk; tokenized real-world assets are not FDIC-insured, are not bank deposits and may lose value; past performance is not indicative of future results; each offering states its own risks and exemption — read all offering documents before investing. Expected returns are investor return profiles, not guarantees or a solicitation.
 
-RWA LIQUIDITY — HOW YOU GET OUT ("A way out, engineered before you come in"):
-1. Exchange liquidity: tokens list on ANDX's regulated exchanges (the same venue serving 50-state crypto trading), with GSR providing committed two-sided market-making — buy and sell like any asset, any day.
-2. Redemption windows: semi-annual redemption at NAV, governed by the offering's smart contract; queue-managed, defined and disclosed upfront.
-3. Maturity / event of default: every offering has a maturity date or defined enforcement; non-payment of a preferred return constitutes an event of default.
+MANILA ONE — FLAGSHIP RWA OFFERING, OPEN NOW (andx.ai/m1 and rwa.andx.ai/m1):
+- What it is: a $100 million land tokenization initiative for the Rizal de Manila Development, one of Metro Manila's last major waterfront and large, contiguous undeveloped properties. ANDX says it is the first to tokenize a large-scale, development-stage land project and open it to investors worldwide from day one.
+- Headline terms: 24% minimum preferred return in 3 years; 100% maximum total return in 3 years (expected investor return profile, subject to change, not an offer or solicitation); greater than 2x collateral coverage — $200M+ of land value backing $100M of tokens; $25 minimum investment; 3-year maturity.
+- Structure: senior secured with upside — token holders receive all payments until principal and the minimum preferred return are paid. Hybrid return: the greater of the 24% minimum preferred return or 20% participation in the increase in market value. "Land owners and token holders have the same goal: increase land value."
+- Property: 54.4 hectares (540,000 sqm); current market value ₱23,300 per sqm, pre-improvement; implied gross market value ₱12.7 billion. Comparable land in Bonifacio Global City trades at about ₱1,600,000 per sqm.
+- Location: between Laguna de Bay (Southeast Asia's largest freshwater lake) and the Pasig River (navigable to Manila Bay), with the government-funded C-6 expressway running directly through the site; about 5 km from Bonifacio Global City (BGC), Metro Manila's primary CBD. Nearby infrastructure: C-6 Road Extension (ongoing), Laguna Lakeshore Road Network (ongoing), MRT Line 4 Extension (ongoing), Pasig River Expressway PAREX (proposed).
+- Strategy: infrastructure-led site improvement (roads, water, power, drainage, utilities), then sale of improved parcels to large Philippine developers for residential, retail and mixed-use development. Comparable CBDs: Makati, Ortigas, BGC, Filinvest City, Eastwood, Aseana City, Arca South, Bridgetown. Scale comparisons: Ginza (Tokyo, 55 ha), Battery Park City & WTC (NYC, 55 ha), Canary Wharf (London, 54 ha), Clarke Quay (Singapore, 50 ha).
+- Sponsor: ARC Pacific Development, Inc. — a Metro Manila-based real estate development firm specializing in large-scale infrastructure-led site transformation; President Jack Rodriguez; Romel Canete (Member, Board of Advisors; commercial real estate and large-scale land transactions).
+- Regulated at every layer: BitGo custody, MARV Capital broker-dealer, FinCEN-registered, all 50 states and international. Token structured under U.S. SEC rules, BVI/Cayman for Reg S, and local regulations in Turkey, Brazil and the UAE.
+- Philippine macro backdrop cited: among the fastest-growing economies; Metro Manila density about 21,765 people per sq km; 13th most populous country with a median age of 25; suburban migration boosting land values.
+- HOW TO BUY MANILA ONE (three steps, "From Signup to Returns"): (1) Open — create your ANDX account using your email at platform.andx.ai and complete verification; (2) Fund — using card, wire, ACH or stablecoin; (3) Transact — buy (and later sell) your tokens on the ANDX platform, the one-stop shop for the token. The "Get Manila One Token" / "Invest Now" buttons on andx.ai and rwa.andx.ai/m1 lead to andx.ai/m1 and the trading platform. The platform handles all compliance, custody and token issuance.
+- In simple terms: Manila One lets you invest in a real $100M land development in the Philippines through a digital token, starting from $25. Instead of needing millions to buy property, you can participate with a small amount and potentially earn returns as the project develops. The token represents actual ownership in the underlying real estate asset.
 
-HOW TO INVEST IN AN RWA OFFERING (5 steps, "From sign-up to income"):
-1. Verify eligibility — a one-time check; U.S. or international, ANDX confirms what you qualify for.
-2. Choose your asset — browse by objective; every open offering shows yield, term, collateral and exit.
-3. Fund and subscribe — pay by wire, stablecoin or crypto; minimum $100; tokens are credited to your wallet.
-4. Earn and monitor — income on schedule, real-time NAV, quarterly reports, on-chain governance.
-5. Exit or rotate — sell on the exchange, redeem at a window, or rotate into a new offering.
+ANDX PAY (cross-border transfers):
+- Move money across borders with AndX Pay — e.g. USD to PHP — built for modern financial activity; frictionless on-chain remittances using the USDA1 stablecoin. Live for South American remittances (Brazil, Mexico, Argentina) and the Philippines corridor; payment-rail expansion starting in the Dominican Republic.
 
-RWA REMITTANCE USE CASE ("Stop depleting principal. Start sending income."):
-- If you send money home every month you are drawing down savings. Alternative: invest the principal in an income-producing token and send the monthly income instead, so the principal stays intact and keeps compounding.
-- Illustrative example from the site: $10,000 invested at an illustrative 10% p.a. pays ~$83/month, which is sent as the remittance; principal after 12 months is still $10,000. This is an illustration, not a guarantee.
+ANDX ROADMAP (as published on andx.ai — four horizons):
+1. The Sovereign Exchange — live now: a 50-state licensed, commission-free gateway for digital asset ownership with true capital mobility.
+2. Real World Assets — in progress / Manila One open now: the tokenization engine's first institutional-grade project is the $100M Rizal de Manila land development.
+3. The Intelligence Edge — AI-native risk modeling and automated capital allocation tools (listed on the site for Q2 2026).
+4. Global Velocity — integrated payment rails for cross-border transfers, starting in the Dominican Republic (listed for Q3 2026).
 
-GLOBAL DISTRIBUTION OF RWA OFFERINGS ("Wherever you are. Whatever you need."):
-- United States: all 50 states; accredited and retail investors; Reg D, Reg S and Reg CF offerings; MARV Capital (FINRA registered, CRD 104390) as placement agent.
-- Turkey: via the Bitexen Exchange — USD-denominated tokens representing real estate senior loans and private credit as a store of value and yield alternative to TRY deposits.
-- Philippines: active distribution — local investors get direct access to Manila One and other Asia REIT opportunities; ANDX Pay turns income distributions into instant remittances (the Philippines receives $17B+ in remittances annually).
-- Latin America (Brazil, Mexico, Argentina): ANDX Pay is live for South American remittances; the Brazil exchange is operational. Dollar-denominated income assets as monetary protection in high-inflation markets.
-- Dominican Republic: payment-rail expansion starts here; Punta Cana resort construction offering in the pipeline.
-
-RWA RISK DISCLOSURE (include when discussing any offering or expected return): All investments involve risk. Tokenized real-world assets are not FDIC-insured, are not bank deposits, and may lose value. Past performance is not indicative of future results. Each offering states its own risks and exemption — read all offering documents carefully before investing. Expected returns are investor return profiles, not guarantees or a solicitation.
-
-MANILA ONE PROJECT (flagship RWA offering — rwa.andx.global/m1):
-- Also known as "Rizal de Manila" — the Rizal de Manila Land Development Project, a land tokenization initiative in Metro Manila, Philippines, raising $100 million for site improvement of one of the city's last large contiguous undeveloped properties.
-- Token type: RealAsset Token (ART) — represents land, buildings, and infrastructure with capital appreciation + income potential.
-- Expected returns: minimum 24% (preferred return), maximum 100%; collateral coverage greater than 2x. Hybrid return structure: the greater of the 24% minimum preferred return or 20% participation in the increase in market value. Token holders are paid first — "Land owners and token holders have the same goal. Increase land value!" These are expected return profiles, subject to change, and not a guaranteed offer or solicitation.
-- Structure: senior secured with upside — token holders receive all payments until principal and the minimum preferred return are paid. Overcollateralized — $100 million in tokens backed by land valued at over $200 million. Short duration — 3-year maturity.
-- Property: 54 hectares (540,000 sqm). Current market value ₱23,300 per sqm (~US$380/sqm); implied gross market value ₱12.4 billion (~US$200 million), pre-improvement. The sponsor holds certified and verified titles.
-- Location: eastern Metro Manila, directly along Laguna de Bay, bounded on the west by the Pasig River and bisected by the C-6 roadway (one of Metro Manila's most important emerging transport corridors); about 5 km from Bonifacio Global City (BGC), the Philippines' premier central business district.
-- Strategy: unlock value through infrastructure-led site improvement (internal road networks, water, power, drainage, utilities), then sell improved parcels to large, well-capitalized Philippine developers for residential, retail and mixed-use commercial development. The site states the property is expected to appreciate 5.0–10.0x in market value after infrastructure delivery — an expectation, not a guarantee.
-- Sponsor: ARC Pacific Development, Inc. Development leads: Romel Canete (Vice Chairman, Newmark — NASDAQ: NMRK) and Jack Rodriguez (President, ARC Pacific Development, Inc.).
-- Regulatory: structured under U.S. SEC rules, BVI/Cayman for Reg S, and local regulations in Turkey, Brazil and the UAE.
-- Nearby infrastructure projects: C-6 Road Extension (ongoing), Laguna Lakeshore Road Network (ongoing), MRT Line 4 Extension (ongoing), Pasig River Expressway PAREX (proposed).
-- Scale comparisons: similar in size to the Ginza District, Tokyo (55 ha); Battery Park City & WTC, NYC (55 ha); Canary Wharf, London (54 ha); Clarke Quay & Riverside, Singapore (50 ha).
-- Metro Manila land comps (current market price per sqm): BGC ₱1,000,000 (US$16,918); Makati ₱940,000 (US$15,904); Ortigas ₱750,000 (US$12,689); Filinvest City ₱688,000 (US$11,640); Arca South ₱550,000 (US$9,305); Aseana City ₱550,000 (US$9,305); Eastwood ₱302,000 (US$5,109).
-- Philippines macro backdrop cited on the page: GDP growth among the highest in the world; Metro Manila density about 21,765 people per sq km; 13th most populous country with a median age of 25; suburban migration beyond the CBDs boosting population and land values.
-- How to get it: click "Get M1 Token" on andx.global or go to rwa.andx.global/m1 and register. Registration is an indication of interest (the form asks for an approximate investment interest range, from "just learning" up to $500,000+). Investing happens through the ANDX platform after eligibility verification.
-- In simple terms: Manila One lets you invest in a real $100M land development in the Philippines through a digital token. Instead of needing millions to buy property, you can participate with a smaller amount and potentially earn returns as the project develops. The token represents actual ownership in the underlying real estate asset.
-
-ANDX ROADMAP (as published on andx.global/why-andx — "The Future of Programmable Wealth", four core horizons):
-1. The Sovereign Exchange — live and operational now: a 50-state licensed, commission-free gateway for digital asset ownership with true capital mobility.
-2. Real World Assets — in progress: the tokenization engine is deploying its first institutional-grade project, the $100M Rizal de Manila land development (Manila One).
-3. The Intelligence Edge — listed on the site for Q2 2026: AI-native risk modeling and automated capital allocation tools to protect and grow user wealth.
-4. Global Velocity — listed on the site for Q3 2026: expanding integrated payment rails (starting in the Dominican Republic) for frictionless, transparent cross-border wealth transfer.
-- Platform philosophy: "ANDX is where exchange functionality is embedded, but growth is driven by AI and real-world assets."
-
-AI FEATURES (coming to beta — "AI Alpha" waitlist on andx.global, "The Intelligence Layer. Coming to Beta."):
-- "The market moves 24/7. Your strategy should too." ANDX is building the industry's first AI-native risk engine designed to give retail traders institutional-grade defense.
-- Real-Time Stop-Loss Logic: AI-driven suggestions based on volatility, not just price.
-- "What-If" Backtesting: Stress-test your portfolio against historical crashes before you deploy capital.
-- Contextual Alerts: Deep-market analysis delivered to your dashboard in plain English.
-- Users can join the waitlist on andx.global to be among the first to test the tools during the phased Beta rollout. AI-driven risk features are in phased rollout and may be subject to beta testing terms.
+AI FEATURES (AI Alpha waitlist — "The Intelligence Layer. Coming to Beta."):
+- ANDX is building an AI-native risk engine to give retail traders institutional-grade defense: Real-Time Stop-Loss Logic (AI-driven suggestions based on volatility, not just price), "What-If" Backtesting (stress-test your portfolio against historical crashes), Contextual Alerts (deep-market analysis delivered in plain English).
+- Join the waitlist on andx.ai to test the tools during the phased Beta rollout. AI-driven risk features are in phased rollout and may be subject to beta testing terms. AI analytics engine: analytics.andx.ai; AI pages: andx.ai/ai-analytics and andx.ai/market-insights.
 
 XORE — THE ANDX AI ASSISTANT:
-- XORE is the ANDX AI support assistant — the chat bubble on andx.global and inside the ANDX app (that is you). It answers platform questions 24/7 and can connect users to a live human agent.
+- XORE is the ANDX AI support assistant — the chat bubble on andx.ai and inside the ANDX app (that is you). It answers platform questions 24/7 and can connect users to a live human agent.
 
 ANDX ECOSYSTEM PRODUCTS:
-- Exchange and Trading (andx.global / platform.andx.global) — spot crypto trading, tokenized securities, real-world assets.
-- Tokenization (rwa.andx.global) — converting real-world assets into blockchain tokens for fractional ownership and global liquidity.
-- Payments — cryptocurrency-based payment solutions, including EV charging station integration.
-- Cross-Border Transfers / ANDX Pay — frictionless on-chain remittances using the USDA1 stablecoin. Fast, low-cost international transfers; live for South American remittances and used in the Philippines corridor.
-- Gamification — engagement tools including contests, leaderboards, badges, and referral rewards to keep users active and learning. See the Trading Competitions page on andx.global and the University Bot Trading Competition (bot.andx.ai/university).
-- ANDX News (andx.global/news) and the market intelligence terminal (news.andx.ai).
+- Exchange and Trading (andx.ai / platform.andx.ai) — spot crypto trading, derivatives, tokenized securities, real-world assets.
+- Tokenization (rwa.andx.ai, andx.ai/andx-tokenization) — converting real-world assets into blockchain tokens for fractional ownership and global liquidity.
+- AndX Pay — cross-border remittances; crypto-based payment solutions, including EV charging station integration.
+- University Bot Trading Competition and trading bots (bot.andx.ai) — see the competition knowledge.
+- Market intelligence (news.andx.ai, andx.ai/market, andx.ai/market-insights, andx.ai/news) and AI analytics (analytics.andx.ai).
+- Gamification — contests, leaderboards, badges and referral rewards.
 
 DEPOSITS AND WITHDRAWALS:
-- ACH deposits: free, no fees, credited upon settlement — "we credit your account the moment settlement is final, no artificial platform delays."
-- Wire transfers: available same-day for rapid liquidity needs — the fastest way to move large capital securely.
-- Direct bank redemption on demand — withdraw to your linked bank account anytime. "We don't force you to wait days to 'request' your own cash."
+- ACH deposits: free, no fees, credited the moment settlement is final — no artificial platform delays.
+- Wire transfers: domestic wires settle the same day — the fastest way to move large capital securely.
+- Direct bank redemption on demand — sell, then withdraw to your linked bank account anytime. "We don't force you to wait days to 'request' your own cash."
 - Self-custodial withdrawals supported — send crypto to your own wallet.
 - No artificial withdrawal delays or hidden holds.
-- RWA offerings can be funded by wire, stablecoin or crypto (minimum $100).
+- RWA offerings can be funded by wire, stablecoin or crypto (Manila One also lists card and ACH); minimum from $25.
 - Third-party costs such as blockchain network (gas) fees and intermediary bank fees may apply.
 
 SUPPORTED ASSETS AND MARKETS:
-- Crypto spot trading — from blue-chip coins to challenger alts. "If it has liquidity, it's accessible."
+- 250+ cryptocurrencies and tokens, from blue chips to challenger alts — "If it has liquidity, it's accessible" — plus crypto derivatives. Live prices and the asset directory: andx.ai/market.
 - Markets are quoted against USDT (for example BTCUSDT, ETHUSDT); the public API lists the live markets.
 - Tokenized real-world assets (real estate, land, infrastructure, private credit, treasury yield).
-- Global alternatives and institutional-grade real estate opportunities.
-
-BETA FEATURES (AI Alpha — waitlist on andx.global):
-- Portfolio stress-testing tools — test how your portfolio would handle past market crashes.
-- Real-time volatility-based alerts — get notified when market conditions change.
-- Automated stop-loss recommendations based on actual volatility.
-- Market analysis dashboards with plain-English insights.
 
 PLATFORM INFRASTRUCTURE:
 - Built on a globally-proven exchange engine — infrastructure is proven, not experimental. "AndX is not a startup experiment."
 - Founded to replace "casino-style exchanges" with professional trading infrastructure from traditional finance.
 - Company tagline: "We Built the Infrastructure, You Fly the Plane."
 - Federal Bank Oversight via BitGo OCC Charter.
-- Scale: the underlying infrastructure supports roughly 2 million (1,999,900+) users worldwide, 79,900+ daily active traders, and 99% uptime during peak market volatility.
-
-GLOBAL PRESENCE:
-- Over 2 million users globally.
-- Available in all 50 US states.
-- Operating in the United States, Brazil, Philippines, Turkey, and Dominican Republic with planned expansion. ANDX Pay also serves Mexico and Argentina for remittances.
+- Scale: 3M+ users worldwide, 80,000+ daily active traders, 250+ assets, 99.99%+ uptime during peak market volatility (andx.ai).
 
 RESOURCES AVAILABLE ON THE PLATFORM:
-- Help Center, Contact Us and API links: in the andx.global footer.
-- API Access: available for developers building on ANDX — documentation at docs.andx.one.
-- Legal pages on andx.global: Regulatory Compliance, Privacy Policy, AML Policy, Cookie Policy, Terms & Conditions, User Disclosure, Risk Disclosure, Limits & Rules.
-- Contact support: support@andxus.io or 888-343-4394.
+- Help Center: us-support.andx.ai. Contact form: andx.ai/contact-us. API documentation: docs.andx.one.
+- Legal pages: andx.ai/regulatory-compliance and andx.ai/disclosures/ (privacy policy, AML policy, cookie policy, terms and conditions, user disclosure, risk disclosure); "Limits & Rules" in the footer.
+- Contact support: support@andx.ai or 888-343-4394.
 
 DEVELOPER API (docs.andx.one — "ANDX API Reference"):
 - Public endpoints (no authentication): list all markets, get a specific market, list all tickers, get a specific ticker, get order book.
 - Private endpoints (signed): get balance, get orders, get order status, create order (limit or market), cancel order, create withdraw request (to saved withdrawal addresses only).
 - Instant Trade endpoints (separate session-token authentication): get quote, place instant order, get trade history.
-- Getting an API key: generate it in the ANDX dashboard — you receive an API Key and a Secret Key and choose your own Passphrase. ANDX emails a confirmation link that must be followed to activate the key.
+- Getting an API key: generate it in the ANDX platform (Settings → API Keys → Create) — you receive an API Key and a Secret Key and choose your own Passphrase. ANDX emails a confirmation link that must be followed to activate the key.
 - Private requests carry the headers ACCESS-USER, ACCESS-PASSPHRASE, ACCESS-TIMESTAMP, ACCESS-SIGN and ACCESS-KEY, with Content-Type application/json. ACCESS-SIGN is an HMAC-SHA256 (upper-case hex) of api_key + username + passphrase + timestamp + body.
 - Rate limit: no more than 60 requests per minute, otherwise HTTP 429. All request paths must end with a trailing slash.
 - Responses are JSON: {"status":"success","data":{...}} or {"status":"error","reason":"...","status_code":...}.
 - Example: the BTC/USDT market has a minimum order amount of 5.00 USDT.
-- For deeper technical questions send developers to docs.andx.one or support@andxus.io.
+- For deeper technical questions send developers to docs.andx.one or support@andx.ai.
 
-ANDX NEWS PAGE (andx.global/news):
-- Sections: ANDX News, Market Analysis, Press Releases, Media, Spotlight.
+ANDX NEWS (andx.ai/news):
+- Sections: ANDX News, Market Analysis, Press Releases, Media, Spotlight. Articles live at andx.ai/posts/<slug>.
 - Spotlight press release (April 9, 2026): "BitGo Powers AndX U.S. Launch with Regulated Digital Asset Infrastructure and Trading Connectivity" — built on the infrastructure of BitGo Bank & Trust, National Association, giving ANDX regulated digital asset infrastructure for secure buying, selling and holding of digital assets, with institutional-grade security controls, compliance capabilities and operational safeguards across all 50 states.
-- Regular market-analysis articles (e.g. ETF flows, Ethereum staking, stablecoin regulation, Bitcoin price ranges). For live prices, charts, signals and the AI newsletter, send users to the market intelligence terminal.
+- Regular market-analysis articles (ETF flows, Ethereum staking, stablecoin regulation, Bitcoin price ranges, Swift's blockchain ledger, Trezor security). For live prices, charts, signals and the AI newsletter, send users to news.andx.ai.
 
 ANDX MARKET INTELLIGENCE (news.andx.ai — separate product):
 - A free market intelligence terminal with live crypto data, AI newsletters, trade ideas, asset battle arena, signal dashboard, and an AI chatbot.
-- Users can visit news.andx.ai for real-time market analysis. The AI analytics engine for technical questions is analytics.andx.ai.
+- Users can visit news.andx.ai for real-time market analysis; the AI analytics engine for technical questions is analytics.andx.ai; live prices and the asset directory are at andx.ai/market.
 - Only mention this if someone specifically asks about market data, news, or the intelligence dashboard.
 
-HELPFUL LINKS TO DIRECT USERS:
-- Sign up / Create account: platform.andx.global/signup (or platform.andx.global)
-- Login: platform.andx.global/login
-- Download app (Android): onelink.to/nfgq9a
-- Download app (iOS): Search "AndX Global Trading App" on the Apple App Store
-- Tokenization / RWA portal: rwa.andx.global
-- Manila One token: rwa.andx.global/m1
-- Fees: andx.global/fees
-- Why ANDX: andx.global/why-andx
-- News: andx.global/news
-- Market intelligence: news.andx.ai
-- AI analytics engine: analytics.andx.ai
-- Trading bot / university competition: bot.andx.ai and bot.andx.ai/university
-- Competition leaderboard: platform.andx.global/trading-competition
-- Developer docs: docs.andx.one
-- Spanish site: andx.global/es/
-- Contact support: support@andxus.io — phone 888-343-4394
-- Help Center, Contact Us, API — available via the andx.global footer
-- Legal: Privacy Policy, AML Policy, Cookie Policy, Terms & Conditions, User Disclosure, Risk Disclosure, Limits & Rules, Regulatory Compliance — all on andx.global
+HELPFUL LINKS TO DIRECT USERS (all on andx.ai):
+- Sign up / Create account: platform.andx.ai/signup (or platform.andx.ai)
+- Login: platform.andx.ai/login
+- Download app (iOS): apps.apple.com/us/app/andx-us-crypto-trading/id6754659164
+- Download app (Android): play.google.com/store/apps/details?id=one.andx.platform (or onelink.to/nfgq9a)
+- How it works: andx.ai/how-it-works
+- Manila One: andx.ai/m1 (also rwa.andx.ai/m1)
+- Tokenization / RWA tokens: andx.ai/andx-tokenization and rwa.andx.ai
+- All RWA offerings: rwa.andx.ai/offerings — register interest: rwa.andx.ai/register-interest
+- Live markets / prices: andx.ai/market — market insights: andx.ai/market-insights — AI analytics: analytics.andx.ai
+- Fees: andx.ai/fees
+- Why ANDX: andx.ai/why-andx — About / team: andx.ai/about-us
+- News: andx.ai/news — Market intelligence terminal: news.andx.ai
+- Trading competition: bot.andx.ai/university — bot dashboard: bot.andx.ai — official rules: bot.andx.ai/university/rules — leaderboard: platform.andx.ai/trading-competition
+- Help Center: us-support.andx.ai — Contact form: andx.ai/contact-us — Developer docs: docs.andx.one
+- Regulatory compliance: andx.ai/regulatory-compliance — Legal: andx.ai/disclosures/ (privacy policy, AML policy, cookie policy, terms and conditions, user disclosure, risk disclosure)
+- Spanish site: andx.ai/es/
+- Contact support: support@andx.ai — phone 888-343-4394
 
-MEET THE TEAM (andx.global/about-us — "Professional Grade Trading Infrastructure"):
+MEET THE TEAM (andx.ai/about-us — "Professional Grade Trading Infrastructure"):
 
 Viru Raparthi — Founder and CEO (AndX Group Founder)
 Seasoned Wall Street financier who managed a $40 billion portfolio. Former executive at Merrill Lynch and Rabobank. Built the ANDX team combining bankers, risk managers, and compliance experts. His vision: "The strength of AndX lies in its people. Our global team combines expertise, passion, and creativity to break boundaries and drive innovation. Together, we are shaping the future of finance and making the impossible, possible."
@@ -1267,7 +1219,7 @@ def load_extra_knowledge():
     chunks = []
     try:
         for fn in sorted(os.listdir(KNOWLEDGE_DIR)):
-            if fn.lower().startswith("readme") or fn.startswith("_") or not fn.lower().endswith((".md", ".txt")):
+            if fn.lower().startswith("readme") or fn.lower() == "overrides.md" or fn.startswith("_") or not fn.lower().endswith((".md", ".txt")):
                 continue
             with open(os.path.join(KNOWLEDGE_DIR, fn), encoding="utf-8", errors="ignore") as f:
                 body = f.read().strip()
@@ -1278,7 +1230,17 @@ def load_extra_knowledge():
     return "\n\n".join(chunks)
 
 EXTRA_KNOWLEDGE = load_extra_knowledge()
-print(f"[knowledge] loaded {len(EXTRA_KNOWLEDGE):,} chars from {KNOWLEDGE_DIR}")
+
+def load_overrides():
+    """knowledge/overrides.md — short support-team instructions that outrank everything else."""
+    try:
+        with open(os.path.join(KNOWLEDGE_DIR, "overrides.md"), encoding="utf-8", errors="ignore") as f:
+            return f.read().strip()
+    except FileNotFoundError:
+        return ""
+
+SUPPORT_OVERRIDES = load_overrides()
+print(f"[knowledge] loaded {len(EXTRA_KNOWLEDGE):,} chars + {len(SUPPORT_OVERRIDES):,} override chars from {KNOWLEDGE_DIR}")
 
 # ── Live website scanner (see site_scan.py) ──
 import site_scan
@@ -1529,7 +1491,9 @@ def api_ask():
                 "from that message (so the user sees the thread), then a blank line, then your fresh answer.\n\n"
             )
 
-    system_prompt = f"""You are ANDX Support — a friendly, knowledgeable AI assistant on the ANDX platform (andx.global).
+    system_prompt = f"""You are ANDX Support — a friendly, knowledgeable AI assistant on the ANDX platform (andx.ai).
+
+{SUPPORT_OVERRIDES}
 
 PRIMARY MISSION: Help users with ANDX platform questions — trading, fees, security, tokenization, team, sign up, app download, and anything about the company.
 SECONDARY MISSION: If someone asks about market data, crypto prices, news, technical analysis, or signals — you CAN answer using the live data provided. But NEVER bring up market data yourself unless the user specifically asks about it.
@@ -1551,7 +1515,7 @@ COMPETITION SUPPORT RULES (apply whenever the user is a student, mentions a scho
 - Before troubleshooting a bot, establish whether it is the hosted cloud bot at bot.andx.ai or a downloaded / custom bot, unless already clear.
 - NEVER ask for, and never accept, an API secret, password, one-time code, seed phrase or a screenshot of the API-key page. If one is pasted, tell the student to delete that key on ANDX and create a new one immediately.
 - When a student reports an error, quote their exact error line first, then give the matched fix from the ERRORS list. If no error matches, ask for the last five Activity log lines as text with sensitive details removed.
-- Never present a proposed extension, fresh-start week, prize or monthly format as already active. For any account-specific outcome (funding, elimination, missing volume, prize status, late entry, existing accounts, manual trades, multiple bots, withdrawals of starting capital) give the general rule and refer the student to support@andx.ai.
+- Never present a proposed extension, fresh-start week, prize or monthly format as already active. The competition currently runs college to college (see SUPPORT TEAM OVERRIDES). For any account-specific outcome (funding, elimination, missing volume, prize status, late entry, existing accounts, manual trades, multiple bots, withdrawals of starting capital) give the general rule and refer the student to support@andx.ai.
 - Rule 11 (analytics redirect) does NOT apply to questions about the competition bot: its styles, settings, risk controls, why it is or isn't trading, why it is losing money, or how ROI, volume and loss limits are scored. Answer those directly from the competition knowledge.
 - Troubleshooting checklists may run up to 300 words. Keep everything else concise.
 - When YOU ask the student a clarifying question (school, round, cloud vs laptop bot), make the 3 FOLLOWUPs the likely answers they can tap, each on its OWN line, for example:
@@ -1578,22 +1542,27 @@ CRITICAL RULES:
 1. NEVER use # headings or * asterisks. Only use <strong> tags for emphasis.
 2. Answer concisely — under 200 words for support questions. For market data questions, up to 350 words.
 3. If the user misspells words or asks vaguely, figure out what they mean. Never ask "what do you mean?"
-4. STRICT RULE — NEVER FABRICATE OR GUESS: Before answering ANY question, check if the answer exists in your knowledge base, the competition knowledge, the live website snapshot, or the live market data provided. If the information is NOT explicitly in your knowledge base, DO NOT make up an answer. Instead say something like: "I don't have the specific details on that right now. For the most accurate and up-to-date information, I'd recommend reaching out to our team at support@andxus.io — they'll be able to help." This applies even if you think you know the answer — if it's not in the knowledge base, don't say it. This is critical for legal compliance.
+4. STRICT RULE — NEVER FABRICATE OR GUESS: Before answering ANY question, check if the answer exists in your knowledge base, the competition knowledge, the live website snapshot, or the live market data provided. If the information is NOT explicitly in your knowledge base, DO NOT make up an answer. Instead say something like: "I don't have the specific details on that right now. For the most accurate and up-to-date information, I'd recommend reaching out to our team at support@andx.ai — they'll be able to help." This applies even if you think you know the answer — if it's not in the knowledge base, don't say it. This is critical for legal compliance.
 5. Always be positive about ANDX. You represent the brand.
 6. When someone asks for a shorter or simpler answer, give it. When they ask for more detail, expand.
 7. If the user says "take me to", "open", "go to", "navigate to", or "redirect to" a page — respond with ONLY the URL and nothing else.
-8. CRITICAL URL RULE: The news/market intelligence site is news.andx.ai — NEVER say news.andxus.io or news.andx.global. The main ANDX website is andx.global. The trading bot is bot.andx.ai. These are DIFFERENT domains.
+8. CRITICAL URL RULE: Every ANDX web property is on andx.ai — main site andx.ai, trading platform platform.andx.ai, tokenization rwa.andx.ai, trading bot bot.andx.ai, market intelligence news.andx.ai, AI analytics analytics.andx.ai, help center us-support.andx.ai. The only exception is the API docs at docs.andx.one. NEVER give a .global, andxus.io or andx.one web link. When the live snapshot's CURRENT LINK DIRECTORY has a matching link, use that exact link. The only support email is support@andx.ai.
 9. If someone says "hi", "hello", "hey" — respond warmly and briefly, then ask how you can help with ANDX. Don't give a long introduction.
 10. If someone asks the same question again, don't repeat yourself word for word. Give a fresh, shorter version.
 11. TECHNICAL/FINANCIAL ANALYSIS REDIRECT: If a user asks a deeply technical or analytical financial question — things like "should I buy BTC now?", "what's the RSI on ETH?", "is this a good entry point?", "what's the price target?", "give me a chart analysis", "what indicators show?", "is this bullish or bearish?", trading strategy advice, portfolio recommendations, or any kind of investment advice — DO NOT answer the question yourself. Instead respond ONLY with: "For technical questions and financial advice, please visit our AI analytics engine at analytics.andx.ai" and nothing else. Do not include follow-ups for these responses. The widget will automatically render a button.
 
 DIRECTING USERS TO PAGES:
-- Sign up: platform.andx.global
-- Log in: platform.andx.global/login
-- Tokenization: rwa.andx.global
-- Why ANDX: andx.global/why-andx
-- Download app (Android): onelink.to/nfgq9a
-- Download app (iOS): Search "AndX Global Trading App" on the Apple App Store
+- Sign up: platform.andx.ai/signup
+- Log in: platform.andx.ai/login
+- Tokenization: rwa.andx.ai (andx.ai/andx-tokenization) — all offerings: rwa.andx.ai/offerings
+- Manila One: andx.ai/m1
+- How it works: andx.ai/how-it-works
+- Why ANDX: andx.ai/why-andx
+- Fees: andx.ai/fees
+- Live markets / prices: andx.ai/market
+- Help Center: us-support.andx.ai — Contact form: andx.ai/contact-us
+- Download app (Android): play.google.com/store/apps/details?id=one.andx.platform (or onelink.to/nfgq9a)
+- Download app (iOS): apps.apple.com/us/app/andx-us-crypto-trading/id6754659164
 - Market dashboard: news.andx.ai (NEVER news.andxus.io)
 - AI Analytics Engine (technical/financial analysis): analytics.andx.ai
 - Simulator: news.andx.ai/simulator
@@ -1602,10 +1571,11 @@ DIRECTING USERS TO PAGES:
 - Signals: news.andx.ai/signals
 - Trading bot dashboard: bot.andx.ai
 - Competition signup: bot.andx.ai/university
-- Competition leaderboard: platform.andx.global/trading-competition
-- Order history: platform.andx.global/spot and platform.andx.global/derivatives
-- Support: support@andxus.io (competition students: support@andx.ai)
-- Team: andx.global/about-us
+- Competition leaderboard: platform.andx.ai/trading-competition — official rules: bot.andx.ai/university/rules
+- Order history: platform.andx.ai/spot and platform.andx.ai/derivatives
+- Support: support@andx.ai (phone 888-343-4394)
+- Team: andx.ai/about-us
+- News: andx.ai/news
 
 FOLLOW-UPS: After your answer, add exactly 3 follow-ups. Each on its own line, prefixed with "FOLLOWUP: ".
 Each MUST be a short question the USER would ask — something they can tap to learn more.
@@ -1687,7 +1657,11 @@ HANDOFF triggers should be genuine — don't offer it pre-emptively. Only when t
             )
         raw_answer = msg.content[0].text
         # Force correct URL — AI sometimes hallucinates news.andxus.io
-        raw_answer = raw_answer.replace("news.andxus.io", "news.andx.ai").replace("news.andx.global", "news.andx.ai").replace("analytics.andx.global", "analytics.andx.ai")
+        for bad, good in (("news.andxus.io", "news.andx.ai"), ("support@andxus.io", "support@andx.ai"),
+                          ("platform.andx.global", "platform.andx.ai"), ("rwa.andx.global", "rwa.andx.ai"),
+                          ("news.andx.global", "news.andx.ai"), ("analytics.andx.global", "analytics.andx.ai"),
+                          ("www.andx.global", "andx.ai"), ("andx.global", "andx.ai"), ("platform.andx.one", "platform.andx.ai")):
+            raw_answer = raw_answer.replace(bad, good)
         answer, follow_ups, handoff = _extract_follow_ups(raw_answer)
         answer = _normalize_markdown(answer)
         return jsonify({
@@ -1727,7 +1701,7 @@ def api_handoff():
         # Fall back to email-only handoff so the widget still does something useful
         return jsonify({
             "ok": False,
-            "message": "Live agent service is being set up. For now, please email support@andxus.io and we'll respond quickly."
+            "message": "Live agent service is being set up. For now, please email support@andx.ai and we'll respond quickly."
         }), 503
 
     data = request.json or {}
@@ -1789,7 +1763,7 @@ def api_handoff():
         })
     return jsonify({
         "ok": False,
-        "message": "We're having trouble reaching a live agent right now. Please email support@andxus.io or call us at 888-343-4394 and we'll get back to you quickly."
+        "message": "We're having trouble reaching a live agent right now. Please email support@andx.ai or call us at 888-343-4394 and we'll get back to you quickly."
     }), 502
 
 
@@ -2146,7 +2120,7 @@ def _email_agent_reply_async(ticket_id, reply):
         # Skip the shared anonymous fallback address — those visitors didn't
         # give us their real email, so emailing the fallback would just spam our
         # own support inbox with copies of every agent reply.
-        anon_addr = os.environ.get("ANON_CONTACT_EMAIL", "support@andxus.io").lower()
+        anon_addr = os.environ.get("ANON_CONTACT_EMAIL", "support@andx.ai").lower()
         if contact_email.lower() == anon_addr:
             return
         # Legacy guard for old tickets created with the fake .local domain
@@ -2168,7 +2142,7 @@ def _email_agent_reply_async(ticket_id, reply):
             "<div style=\"border-left:3px solid #724dfb;padding:14px 18px;margin:0 0 20px;background:#faf9ff;"
             f"font-size:15px;line-height:1.55;color:#1a1a2e;border-radius:0 6px 6px 0\">{content_html}</div>"
             "<p style=\"color:#888;font-size:12px;line-height:1.5;margin:24px 0 0;border-top:1px solid #eee;padding-top:16px\">"
-            "Reply directly to this email or visit <a href=\"https://andx.global\" style=\"color:#724dfb\">andx.global</a> "
+            "Reply directly to this email or visit <a href=\"https://andx.ai\" style=\"color:#724dfb\">andx.ai</a> "
             "and open the chat to continue the conversation.</p>"
             "</div></div>"
         )

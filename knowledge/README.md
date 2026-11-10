@@ -14,9 +14,12 @@ How to add a deck, FAQ or policy:
 4. Commit, push, and redeploy (`gcloud run deploy andx-bot --source . --region us-central1
    --allow-unauthenticated --project andx-support-bot`). Changes show up after the deploy.
 
-Files named `README*` or starting with `_` are ignored. Keep the folder under ~60,000
+`overrides.md` is special: it is NOT appended as knowledge but injected at the top of the prompt as
+SUPPORT TEAM OVERRIDES, which outrank both the built-in knowledge and the live website snapshot. Use it
+for short, decisive instructions (current competition format, which domain/email to use, what not to
+say). Files named `README*` or starting with `_` are ignored. Keep the folder under ~60,000
 characters in total so the prompt stays fast and cheap (Claude Haiku, prompt-cached).
 
-The live website snapshot is NOT stored here — `site_scan.py` fetches andx.global,
-rwa.andx.global and bot.andx.ai every few hours and feeds a digest into the prompt
+The live website snapshot is NOT stored here — `site_scan.py` fetches andx.ai,
+rwa.andx.ai and bot.andx.ai every few hours and feeds a digest into the prompt
 automatically. Check `GET /api/site-scan` for its status.

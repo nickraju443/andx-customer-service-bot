@@ -1,6 +1,6 @@
 /**
  * ANDX Support Chat Widget v3.0 — Complete Rewrite
- * Drop-in embeddable customer service bot for andx.global
+ * Drop-in embeddable customer service bot for andx.ai
  * Usage: <script src="https://YOUR-BOT-URL/andx-widget.js"></script>
  */
 (function () {
@@ -1643,11 +1643,11 @@
   /* ── Action buttons below AI responses ────────────────── */
   function renderActionButtons(html, targetThread) {
     var urlMap = [
-      { pattern: 'platform.andx.global/login', label: 'Log In', url: 'https://platform.andx.global/login' },
-      { pattern: 'platform.andx.global', label: 'Sign Up', url: 'https://platform.andx.global' },
-      { pattern: 'rwa.andx.global', label: 'View Tokenization', url: 'https://rwa.andx.global' },
-      { pattern: 'andx.global/about-us', label: 'Meet the Team', url: 'https://andx.global/about-us' },
-      { pattern: 'andx.global/why-andx', label: 'Why ANDX', url: 'https://andx.global/why-andx' },
+      { pattern: 'platform.andx.ai/login', label: 'Log In', url: 'https://platform.andx.ai/login' },
+      { pattern: 'platform.andx.ai', label: 'Sign Up', url: 'https://platform.andx.ai' },
+      { pattern: 'rwa.andx.ai', label: 'View Tokenization', url: 'https://rwa.andx.ai' },
+      { pattern: 'andx.ai/about-us', label: 'Meet the Team', url: 'https://andx.ai/about-us' },
+      { pattern: 'andx.ai/why-andx', label: 'Why ANDX', url: 'https://andx.ai/why-andx' },
       { pattern: 'analytics.andx.ai', label: 'Open AI Analytics', url: 'https://analytics.andx.ai' },
       { pattern: 'news.andx.ai', label: 'Market Dashboard', url: 'https://news.andx.ai' },
       { pattern: 'onelink.to/nfgq9a', label: 'Download App', url: 'https://onelink.to/nfgq9a' },
@@ -1917,7 +1917,7 @@
               emailInput.disabled = false;
               nameInput.disabled = false;
               submitBtn.innerHTML = SEND_ICON_SVG + ' Try again';
-              status.textContent = (res.j && res.j.message) || 'We had trouble sending that. Please email support@andxus.io or call 888-343-4394.';
+              status.textContent = (res.j && res.j.message) || 'We had trouble sending that. Please email support@andx.ai or call 888-343-4394.';
             }
             scrollToBottom();
           })
@@ -1928,7 +1928,7 @@
             emailInput.disabled = false;
             nameInput.disabled = false;
             submitBtn.innerHTML = SEND_ICON_SVG + ' Try again';
-            status.textContent = 'Connection error. Please email support@andxus.io and we\'ll respond quickly.';
+            status.textContent = 'Connection error. Please email support@andx.ai and we\'ll respond quickly.';
             scrollToBottom();
           });
       };
